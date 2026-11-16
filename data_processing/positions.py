@@ -1,13 +1,48 @@
 
 import json
 from pathlib import Path
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 import pandas as pd
 
 
-def parse_player_appearances(json_path):
-    """Extract player appearances and their playing time from one match."""
+def load_player_nicknames(lineups_dir):
+    """Load player nicknames from StatsBomb lineup JSON files."""
+
+    lineups_dir = Path(lineups_dir)
+    nicknames = {}
+
+    files = sorted(lineups_dir.rglob("*.json"))
+
+    print(f"Found {len(files)} lineup files.")
+
+    for file_path in files:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                teams = json.load(f)
+
+            if isinstance(teams, dict):
+                teams = [teams]
+
+            for team in teams:
+                for player in team.get("lineup", []):
+                    player_id = player.get("player_id")
+                    nickname = player.get("player_nickname")
+
+                    if player_id is not None and nickname:
+                        nicknames[str(player_id)] = nickname
+
+        except (json.JSONDecodeError, OSError, TypeError) as e:
+            print(f"Error reading {file_path}: {e}")
+
+    print(f"Loaded {len(nicknames)} player nicknames.")
+
+    return nicknames
+
+
+
+def parse_player_appearances(json_path, competition_lookup):
+    """Extract player appearances and playing time from one match."""
 
     with open(json_path, "r", encoding="utf-8") as f:
         events = json.load(f)
@@ -31,6 +66,9 @@ def parse_player_appearances(json_path):
         default=0
     )
 
+    match_id = json_path.stem
+    competition_name = competition_lookup.get(match_id, "Unknown")
+
     appearances = []
     active_players = {}
 
@@ -38,12 +76,21 @@ def parse_player_appearances(json_path):
         if not player or not team:
             return
 
-        key = (team["id"], player["id"])
+        player_id = player.get("id")
+        team_id = team.get("id")
+
+        if player_id is None or team_id is None:
+            return
+
+        key = (team_id, player_id)
 
         appearance = {
-            "player_id": player["id"],
-            "player_name": player["name"],
-            "team": team["name"],
+            "player_id": player_id,
+            "player_name": player.get("name"),
+            "nick_name": player.get("nickname"),
+            "team": team.get("name"),
+            "competition_name": competition_name,
+            "match_file": json_path.name,
             "start_seconds": start_time,
             "end_seconds": None,
             "end_position": position or "Unknown",
@@ -63,10 +110,11 @@ def parse_player_appearances(json_path):
         # Starting XI
         if event_type == "Starting XI":
             for item in event.get("tactics", {}).get("lineup", []):
+                player_data = item.get("player")
                 player_position = item.get("position", {}).get("name")
 
                 add_player(
-                    player=item.get("player"),
+                    player=player_data,
                     team=team,
                     start_time=0,
                     position=player_position,
@@ -95,7 +143,7 @@ def parse_player_appearances(json_path):
                     start_time=current_time,
                 )
 
-        # Update the latest recorded position of active players
+        # Update latest recorded position of active players
         elif player and team:
             key = (team["id"], player["id"])
             appearance = active_players.get(key)
@@ -118,22 +166,66 @@ def parse_player_appearances(json_path):
     return appearances
 
 
-def aggregate_all_matches(events_dir):
-    """Parse all match files and aggregate player statistics."""
+def load_competition_lookup(matches_dir):
+    """
+    Build match_id -> competition_name lookup
+    from StatsBomb matches JSON files.
+    """
+
+    matches_dir = Path(matches_dir)
+    competition_lookup = {}
+
+    files = list(matches_dir.rglob("*.json"))
+
+    print(f"Found {len(files)} match metadata files.")
+
+    for file_path in files:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                matches = json.load(f)
+
+            if not isinstance(matches, list):
+                continue
+
+            for match in matches:
+                match_id = match.get("match_id")
+
+                competition = match.get("competition") or {}
+                competition_name = competition.get("competition_name")
+
+                if match_id is not None and competition_name:
+                    competition_lookup[str(match_id)] = competition_name
+
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"Error reading {file_path}: {e}")
+
+    print(f"Loaded competition information for {len(competition_lookup)} matches.")
+
+    return competition_lookup
+
+
+
+def aggregate_all_matches(events_dir, matches_dir, lineups_dir):
+    """Parse all matches and aggregate player statistics."""
 
     events_dir = Path(events_dir)
+
+    # Load external metadata
+    competition_lookup = load_competition_lookup(matches_dir)
+    nickname_lookup = load_player_nicknames(lineups_dir)
+
     all_appearances = []
 
     files = sorted(events_dir.rglob("*.json"))
 
-    print(f"Found {len(files)} match files.")
+    print(f"Found {len(files)} event files.")
 
     for i, file_path in enumerate(files, start=1):
         try:
-            appearances = parse_player_appearances(file_path)
-
-            for appearance in appearances:
-                appearance["match_file"] = file_path.name
+            appearances = parse_player_appearances(
+                file_path,
+                competition_lookup
+            )
 
             all_appearances.extend(appearances)
 
@@ -150,7 +242,13 @@ def aggregate_all_matches(events_dir):
 
     df = pd.DataFrame(all_appearances)
 
-    # Aggregate minutes by player and position.
+    # Normalize IDs for reliable nickname matching
+    df["player_id"] = df["player_id"].astype(str)
+
+    # --------------------------------------------------
+    # Position statistics
+    # --------------------------------------------------
+
     position_stats = (
         df.groupby(
             ["player_id", "player_name", "end_position"],
@@ -159,7 +257,6 @@ def aggregate_all_matches(events_dir):
         .agg(position_minutes=("minutes_played", "sum"))
     )
 
-    # Find the position with the most accumulated minutes.
     position_stats = position_stats.sort_values(
         ["player_id", "position_minutes", "end_position"],
         ascending=[True, False, True]
@@ -168,14 +265,82 @@ def aggregate_all_matches(events_dir):
     dominant_positions = (
         position_stats
         .drop_duplicates(subset=["player_id"])
-        .rename(columns={
-            "end_position": "position"
-        })[
-            ["player_id", "position", "position_minutes"]
-        ]
+        .rename(columns={"end_position": "position"})
+        [["player_id", "position", "position_minutes"]]
     )
 
-    # Aggregate total player statistics.
+    # Position breakdown
+    position_stats["position_entry"] = position_stats.apply(
+        lambda row: (
+            f"{row['end_position']}: "
+            f"{row['position_minutes']:.1f}"
+        ),
+        axis=1
+    )
+
+    position_breakdown = (
+        position_stats
+        .groupby("player_id")["position_entry"]
+        .agg("; ".join)
+        .reset_index(name="positions_breakdown")
+    )
+
+    # --------------------------------------------------
+    # Most played team
+    # --------------------------------------------------
+
+    team_stats = (
+        df.groupby(
+            ["player_id", "team"],
+            as_index=False
+        )
+        .agg(team_minutes=("minutes_played", "sum"))
+        .sort_values(
+            ["player_id", "team_minutes", "team"],
+            ascending=[True, False, True]
+        )
+    )
+
+    most_played_team = (
+        team_stats
+        .drop_duplicates(subset=["player_id"])
+        [["player_id", "team", "team_minutes"]]
+        .rename(columns={
+            "team": "most_played_team",
+            "team_minutes": "most_played_team_minutes"
+        })
+    )
+
+    # --------------------------------------------------
+    # Most played competition
+    # --------------------------------------------------
+
+    competition_stats = (
+        df.groupby(
+            ["player_id", "competition_name"],
+            as_index=False
+        )
+        .agg(competition_minutes=("minutes_played", "sum"))
+        .sort_values(
+            ["player_id", "competition_minutes", "competition_name"],
+            ascending=[True, False, True]
+        )
+    )
+
+    most_played_competition = (
+        competition_stats
+        .drop_duplicates(subset=["player_id"])
+        [["player_id", "competition_name", "competition_minutes"]]
+        .rename(columns={
+            "competition_name": "most_played_competition",
+            "competition_minutes": "most_played_competition_minutes"
+        })
+    )
+
+    # --------------------------------------------------
+    # General player statistics
+    # --------------------------------------------------
+
     player_stats = (
         df.groupby(
             ["player_id", "player_name"],
@@ -187,26 +352,22 @@ def aggregate_all_matches(events_dir):
         )
     )
 
-    # Add dominant position.
-    result = player_stats.merge(
+    # Nicknames from lineup JSON files
+    player_stats["nick_name"] = (
+        player_stats["player_id"].map(nickname_lookup)
+    )
+
+    # --------------------------------------------------
+    # Combine all statistics
+    # --------------------------------------------------
+
+    # IMPORTANT: initialize result before merging
+    result = player_stats.copy()
+
+    result = result.merge(
         dominant_positions,
         on="player_id",
         how="left"
-    )
-
-    # Add a readable breakdown of minutes by position.
-    position_breakdown = (
-        position_stats
-        .groupby(["player_id"])
-        .apply(
-            lambda group: "; ".join(
-                f"{row['end_position']}: {row['position_minutes']:.1f}"
-                for _, row in group.iterrows()
-            ),
-            include_groups=False
-        )
-        .rename("positions_breakdown")
-        .reset_index()
     )
 
     result = result.merge(
@@ -215,15 +376,73 @@ def aggregate_all_matches(events_dir):
         how="left"
     )
 
-    result["total_minutes"] = result["total_minutes"].round(2)
-    result["position_minutes"] = result["position_minutes"].round(2)
+    result = result.merge(
+        most_played_team,
+        on="player_id",
+        how="left"
+    )
+
+    result = result.merge(
+        most_played_competition,
+        on="player_id",
+        how="left"
+    )
+
+    # --------------------------------------------------
+    # Round minutes
+    # --------------------------------------------------
+
+    minute_columns = [
+        "total_minutes",
+        "position_minutes",
+        "most_played_team_minutes",
+        "most_played_competition_minutes",
+    ]
+
+    for column in minute_columns:
+        result[column] = result[column].round(2)
+
+    # --------------------------------------------------
+    # Final columns
+    # --------------------------------------------------
+
+    result = result[
+        [
+            "player_id",
+            "player_name",
+            "nick_name",
+            "most_played_team",
+            "most_played_team_minutes",
+            "most_played_competition",
+            "most_played_competition_minutes",
+            "total_minutes",
+            "matches_played",
+            "position",
+            "position_minutes",
+            "positions_breakdown",
+        ]
+    ]
 
     result = result.sort_values(
         "total_minutes",
         ascending=False
     ).reset_index(drop=True)
 
+    # Diagnostics
+    matched_nicknames = result["nick_name"].notna().sum()
+
+    print(
+        f"Players with nicknames: "
+        f"{matched_nicknames}/{len(result)}"
+    )
+
+    print(
+        f"Players with unknown competition: "
+        f"{(result['most_played_competition'] == 'Unknown').sum()}"
+    )
+
     return result
+
 
 
 # --------------------------------------------------
@@ -231,12 +450,24 @@ def aggregate_all_matches(events_dir):
 # --------------------------------------------------
 
 events_directory = "open-data-projects/data/events/"
+matches_directory = "open-data-projects/data/matches/"
+lineups_directory = "open-data-projects/data/lineups/"
 
-players = aggregate_all_matches(events_directory)
+players = aggregate_all_matches(
+    events_dir=events_directory,
+    matches_dir=matches_directory,
+    lineups_dir=lineups_directory
+)
 
 # Save aggregated player statistics
+output_file = Path(
+    "open-data-projects/data/processed/players_positions.csv"
+)
+
+output_file.parent.mkdir(parents=True, exist_ok=True)
+
 players.to_csv(
-    "open-data-projects/data/processed/players_positions.csv",
+    output_file,
     index=False,
     encoding="utf-8-sig"
 )
