@@ -291,11 +291,15 @@ def aggregate_player_statistics(df):
         return df
 
     result = (
-        df.groupby(
-            ["player_id", "player_name"],
-            as_index=False
-        )
+        df.groupby("player_id", as_index=False)
         .agg(
+            player_name=(
+                "player_name",
+                lambda s: next(
+                    (name for name in s if pd.notna(name)),
+                    None
+                )
+            ),
             carries=("carries", "sum"),
             successful_carries=("successful_carries", "sum"),
             classified_carries=("classified_carries", "sum"),

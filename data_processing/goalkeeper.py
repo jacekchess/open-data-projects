@@ -157,6 +157,7 @@ def create_player_stats():
 
         # GOALKEEPER ACTIONS
         "gk_actions": 0,
+        "gk_actions_with_outcome": 0,
         "gk_actions_with_end_location": 0,
         "gk_actions_with_body_part": 0,
         "gk_actions_with_technique": 0,
@@ -252,6 +253,7 @@ def process_match(match_file):
         outcome = get_name(goalkeeper.get("outcome"))
 
         if outcome:
+            player_stats["gk_actions_with_outcome"] += 1
             player_stats["action_outcomes"][outcome] += 1
 
         # Technique
@@ -528,11 +530,20 @@ def aggregate_player_statistics(df):
     ]
 
     result = (
-        df.groupby(
-            ["player_id", "player_name"],
-            as_index=False
-        )[numeric_columns]
-        .sum()
+        df.groupby("player_id", as_index=False)
+        .agg(
+            player_name=(
+                "player_name",
+                lambda s: next(
+                    (name for name in s if pd.notna(name)),
+                    None
+                )
+            ),
+            **{
+                column: (column, "sum")
+                for column in numeric_columns
+            }
+        )
     )
 
     # -----------------------------------------------------
@@ -548,6 +559,31 @@ def aggregate_player_statistics(df):
         )
         .mul(100)
         .round(2)
+    )
+
+    # Difference between pre-shot xG on shots on target
+    # and goals conceded from those same shots.
+    #
+    # Positive = fewer goals conceded than the pre-shot xG.
+    # This is NOT a PSxG-based goals prevented metric.
+
+    result["goals_prevented_vs_ontarget_xg"] = (
+        result["xg_against_on_target_shots"]
+        - result["goals_conceded"]
+    ).round(3)
+
+
+    # Goals conceded relative to pre-shot xG on target.
+    # Lower = fewer goals conceded relative to the xG faced.
+
+    result["goals_conceded_to_ontarget_xg_ratio"] = (
+        result["goals_conceded"]
+        .div(
+            result["xg_against_on_target_shots"].replace(
+                0, float("nan")
+            )
+        )
+        .round(3)
     )
 
     result["goals_conceded_per_shot_on_target"] = (
@@ -629,6 +665,17 @@ def aggregate_player_statistics(df):
         .round(2)
     )
 
+    result["action_outcome_fail_pct"] = (
+        result["action_outcome_fail"]
+        .div(
+            result["gk_actions_with_outcome"].replace(
+                0, float("nan")
+            )
+        )
+        .mul(100)
+        .round(2)
+    )
+
     # -----------------------------------------------------
     # ROUND XG
     # -----------------------------------------------------
@@ -672,27 +719,36 @@ FINAL_COLUMNS = [
     "player_id",
     "player_name",
 
+    # Shot stopping
     "shots_on_target_faced",
     "saves",
     "goals_conceded",
     "save_pct",
     "xg_against_all_attributed_shots",
     "xg_against_on_target_shots",
+    "goals_prevented_vs_ontarget_xg",
+    "goals_conceded_to_ontarget_xg_ratio",
 
+    # Penalties
     "penalties_faced",
     "penalties_saved",
     "penalty_goals_conceded",
     "penalty_save_pct",
 
+    # Goalkeeper actions
     "gk_actions",
+    "gk_actions_with_outcome",
     "actions_per_shot_on_target",
+    "action_outcome_fail_pct",
 
+    # Action types
     "action_type_claim",
     "action_type_punch",
     "action_type_keeper_sweeper",
     "action_type_smother",
     "action_type_collected",
 
+    # Action outcomes
     "action_outcome_fail",
     "action_outcome_punched_out",
 ]

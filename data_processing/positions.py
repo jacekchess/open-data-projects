@@ -342,11 +342,15 @@ def aggregate_all_matches(events_dir, matches_dir, lineups_dir):
     # --------------------------------------------------
 
     player_stats = (
-        df.groupby(
-            ["player_id", "player_name"],
-            as_index=False
-        )
+        df.groupby("player_id", as_index=False)
         .agg(
+            player_name=(
+                "player_name",
+                lambda s: next(
+                    (name for name in s if pd.notna(name)),
+                    None
+                )
+            ),
             total_minutes=("minutes_played", "sum"),
             matches_played=("match_file", "nunique"),
         )

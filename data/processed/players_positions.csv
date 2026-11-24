@@ -1,15 +1,15 @@
 ﻿player_id,player_name,nick_name,most_played_team,most_played_team_minutes,most_played_competition,most_played_competition_minutes,total_minutes,matches_played,position,position_minutes,positions_breakdown
-3813,Wes Morgan,,Leicester City,3594.34,Premier League,3594.34,3594.34,38,Right Center Back,2643.75,Right Center Back: 2643.7; Left Center Back: 950.6
 3815,Kasper Schmeichel,,Leicester City,3594.34,Premier League,3594.34,3594.34,38,Goalkeeper,3594.34,Goalkeeper: 3594.3
-3608,Simon Francis,,AFC Bournemouth,3591.89,Premier League,3591.89,3591.89,38,Right Center Back,1893.77,Right Center Back: 1893.8; Right Back: 1698.1
+3813,Wes Morgan,,Leicester City,3594.34,Premier League,3594.34,3594.34,38,Right Center Back,2643.75,Right Center Back: 2643.7; Left Center Back: 950.6
 3344,Andrew Surman,,AFC Bournemouth,3591.89,Premier League,3591.89,3591.89,38,Center Defensive Midfield,1226.89,Center Defensive Midfield: 1226.9; Right Defensive Midfield: 843.8; Left Center Midfield: 670.6; Right Center Midfield: 473.6; Left Defensive Midfield: 377.0
+3608,Simon Francis,,AFC Bournemouth,3591.89,Premier League,3591.89,3591.89,38,Right Center Back,1893.77,Right Center Back: 1893.8; Right Back: 1698.1
 20005,Toby Alderweireld,,Tottenham Hotspur,3569.54,Premier League,3569.54,3569.54,38,Right Center Back,3476.49,Right Center Back: 3476.5; Right Back: 93.0
 3742,Orestis Karnezis,,Udinese,3568.52,Serie A,3568.52,3568.52,38,Goalkeeper,3568.52,Goalkeeper: 3568.5
 4506,Nampalys Mendy,,OGC Nice,3556.51,Ligue 1,3556.51,3556.51,38,Center Defensive Midfield,3092.44,Center Defensive Midfield: 3092.4; Right Defensive Midfield: 185.9; Left Defensive Midfield: 185.0; Left Center Midfield: 93.1
 3522,Heurelho da Silva Gomes,Heurelho Gomes,Watford,3554.47,Premier League,3554.47,3554.47,38,Goalkeeper,3554.47,Goalkeeper: 3554.5
 3523,Craig Dawson,,West Bromwich Albion,3548.99,Premier League,3548.99,3548.99,38,Right Back,3078.35,Right Back: 3078.3; Right Center Back: 281.5; Right Midfield: 95.1; Left Center Back: 94.1
-2963,Rémy Vercoutre,,Stade Malherbe Caen,2709.69,Ligue 1,3547.47,3547.47,38,Goalkeeper,3547.47,Goalkeeper: 3547.5
 22111,Dennis Appiah,,Stade Malherbe Caen,2709.69,Ligue 1,3547.47,3547.47,38,Right Back,3361.43,Right Back: 3361.4; Right Wing Back: 186.0
+2963,Rémy Vercoutre,,Stade Malherbe Caen,2709.69,Ligue 1,3547.47,3547.47,38,Goalkeeper,3547.47,Goalkeeper: 3547.5
 6378,Jan Oblak,,Atlético Madrid,3544.6,La Liga,3544.6,3544.6,38,Goalkeeper,3544.6,Goalkeeper: 3544.6
 6625,Vicente Guaita Panadero,Vicente Guaita,Getafe,3543.25,La Liga,3543.25,3543.25,38,Goalkeeper,3543.25,Goalkeeper: 3543.3
 4022,Darren Fletcher,,West Bromwich Albion,3533.92,Premier League,3533.92,3533.92,38,Right Center Midfield,1840.35,Right Center Midfield: 1840.3; Right Defensive Midfield: 1033.1; Left Center Midfield: 378.6; Left Defensive Midfield: 187.4; Center Attacking Midfield: 94.6
@@ -55,6 +55,7 @@
 3874,Mark Noble,,West Ham United,3347.07,Premier League,3347.07,3347.07,37,Left Center Midfield,1084.81,Left Center Midfield: 1084.8; Right Center Midfield: 920.6; Right Defensive Midfield: 836.7; Left Defensive Midfield: 505.0
 6762,Álvaro González Soberón,Álvaro González,Espanyol,3342.24,La Liga,3342.24,3342.24,36,Right Center Back,3154.12,Right Center Back: 3154.1; Right Back: 188.1
 3549,Romain Thomas,,Angers,3338.07,Ligue 1,3338.07,3338.07,36,Left Center Back,3338.07,Left Center Back: 3338.1
+4429,Yann Gérard M''Vila,Yann M'Vila,Sunderland,3336.43,Premier League,3336.43,3336.43,37,Right Center Midfield,1175.1,Right Center Midfield: 1175.1; Left Defensive Midfield: 748.8; Left Center Midfield: 566.2; Center Defensive Midfield: 561.7; Right Defensive Midfield: 189.6; Right Defensive Midfield: 95.0
 6654,Antonio Adán Garrido,Antonio Adán,Real Betis,3334.22,La Liga,3334.22,3334.22,36,Goalkeeper,3334.22,Goalkeeper: 3334.2
 3960,José Miguel da Rocha Fonte,José Fonte,Southampton,3327.57,Premier League,3327.57,3327.57,37,Right Center Back,2573.88,Right Center Back: 2573.9; Center Back: 563.8; Left Center Back: 189.9
 6792,Pau López Sabata,Pau López,Espanyol,3315.04,La Liga,3315.04,3315.04,36,Goalkeeper,3315.04,Goalkeeper: 3315.0
@@ -86,7 +87,6 @@
 5246,Luis Alberto Suárez Díaz,Luis Suárez,Barcelona,3242.92,La Liga,3242.92,3242.92,35,Center Forward,3058.92,Center Forward: 3058.9; Right Wing: 92.0; Left Center Forward: 92.0
 2950,Jonas Martin,,Montpellier,3241.83,Ligue 1,3241.83,3241.83,36,Left Defensive Midfield,1866.31,Left Defensive Midfield: 1866.3; Left Center Midfield: 928.7; Left Wing: 258.4; Right Center Midfield: 188.5
 3291,Joe Hart,,Manchester City,3241.73,Premier League,3241.73,3241.73,35,Goalkeeper,3241.73,Goalkeeper: 3241.7
-4429,Yann Gérard M''Vila,Yann M'Vila,Sunderland,3336.43,Premier League,3336.43,3241.42,36,Right Center Midfield,1175.1,Right Center Midfield: 1175.1; Left Defensive Midfield: 748.8; Left Center Midfield: 566.2; Center Defensive Midfield: 561.7; Right Defensive Midfield: 189.6; Right Defensive Midfield: 95.0
 3467,Erik Pieters,,Stoke City,3231.71,Premier League,3231.71,3231.71,35,Left Back,3231.71,Left Back: 3231.7
 6699,Ander Capa Rodríguez,Ander Capa,Eibar,3231.17,La Liga,3231.17,3231.17,36,Right Back,3137.88,Right Back: 3137.9; Right Wing: 93.3
 7055,Stefano Sorrentino,,Palermo,3229.79,Serie A,3229.79,3229.79,35,Goalkeeper,3229.79,Goalkeeper: 3229.8
@@ -113,6 +113,7 @@
 3263,Craig Cathcart,,Watford,3186.41,Premier League,3186.41,3186.41,35,Right Center Back,1610.84,Right Center Back: 1610.8; Left Center Back: 1437.5; Right Back: 138.0
 3210,Valère Germain,,OGC Nice,3186.06,Ligue 1,3186.06,3186.06,38,Right Center Forward,1388.82,Right Center Forward: 1388.8; Left Center Forward: 1099.3; Center Forward: 179.9; Right Wing: 175.4; Left Wing: 174.2; Right Midfield: 92.5; Left Midfield: 75.9
 4275,Ross Barkley,,Everton,3182.12,Premier League,3182.12,3182.12,38,Center Attacking Midfield,2344.18,Center Attacking Midfield: 2344.2; Right Center Midfield: 539.1; Right Defensive Midfield: 95.0; Left Center Midfield: 86.7; Left Wing: 86.5; Right Wing: 30.8
+3961,N''Golo Kanté,N'Golo Kanté,Leicester City,3180.09,Premier League,3180.09,3180.09,37,Left Defensive Midfield,1100.84,Left Defensive Midfield: 1100.8; Left Center Midfield: 949.2; Right Center Midfield: 653.3; Right Defensive Midfield: 317.0; Left Defensive Midfield: 95.7; Center Attacking Midfield: 33.5; Left Midfield: 16.9; Left Center Forward: 13.7
 3684,Cheikhou Kouyaté,,West Ham United,3179.47,Premier League,3179.47,3179.47,34,Right Center Midfield,850.09,Right Center Midfield: 850.1; Center Defensive Midfield: 568.3; Right Defensive Midfield: 565.1; Left Defensive Midfield: 456.5; Left Center Midfield: 263.1; Right Back: 190.8; Left Center Back: 190.5; Right Center Back: 95.1
 6823,Sergio Rico González,Sergio Rico,Sevilla,3177.35,La Liga,3177.35,3177.35,34,Goalkeeper,3177.35,Goalkeeper: 3177.3
 3662,Danny Drinkwater,,Leicester City,3173.29,Premier League,3173.29,3173.29,35,Right Center Midfield,1035.39,Right Center Midfield: 1035.4; Left Defensive Midfield: 740.0; Left Center Midfield: 717.4; Right Defensive Midfield: 680.5
@@ -152,7 +153,6 @@
 401508,Clément Maury,,Gazélec Ajaccio,3089.41,Ligue 1,3089.41,3089.41,33,Goalkeeper,3089.41,Goalkeeper: 3089.4
 9578,Jonathan Howson,,Norwich City,3088.88,Premier League,3088.88,3088.88,36,Left Center Midfield,934.04,Left Center Midfield: 934.0; Left Defensive Midfield: 735.3; Right Midfield: 546.1; Right Center Midfield: 215.6; Center Attacking Midfield: 208.3; Right Wing: 165.0; Right Attacking Midfield: 96.8; Right Defensive Midfield: 94.5; Left Wing: 93.0
 3348,Younousse Sankharé,,Guingamp,3085.56,Ligue 1,3085.56,3085.56,33,Left Defensive Midfield,1406.23,Left Defensive Midfield: 1406.2; Left Center Midfield: 747.5; Right Defensive Midfield: 375.6; Center Attacking Midfield: 275.8; Left Center Forward: 187.1; Center Defensive Midfield: 93.3
-3961,N''Golo Kanté,N'Golo Kanté,Leicester City,3180.09,Premier League,3180.09,3084.38,36,Left Defensive Midfield,1100.84,Left Defensive Midfield: 1100.8; Left Center Midfield: 949.2; Right Center Midfield: 653.3; Right Defensive Midfield: 317.0; Left Defensive Midfield: 95.7; Center Attacking Midfield: 33.5; Left Midfield: 16.9; Left Center Forward: 13.7
 4270,Jérémy Pied,,OGC Nice,3080.1,Ligue 1,3080.1,3080.1,33,Right Back,2256.5,Right Back: 2256.5; Left Back: 545.6; Right Wing Back: 278.0
 3451,Alexandre Lacazette,,Lyon,3072.74,Ligue 1,3072.74,3072.74,34,Center Forward,2098.27,Center Forward: 2098.3; Left Center Forward: 568.8; Right Center Forward: 311.5; Center Attacking Midfield: 94.1
 3205,Kyle Walker,,Tottenham Hotspur,3070.61,Premier League,3070.61,3070.61,33,Right Back,3070.61,Right Back: 3070.6
@@ -200,6 +200,7 @@
 5605,Oscar Hiljemark,,Palermo,2997.04,Serie A,2997.04,2997.04,38,Right Center Midfield,1586.36,Right Center Midfield: 1586.4; Right Defensive Midfield: 451.3; Left Center Midfield: 345.4; Left Defensive Midfield: 275.9; Right Midfield: 188.0; Center Defensive Midfield: 95.0; Right Wing: 55.1
 6777,Sidnei Rechel da Silva Júnior,Sidnei,RC Deportivo La Coruña,2994.99,La Liga,2994.99,2994.99,33,Left Center Back,2914.92,Left Center Back: 2914.9; Right Center Back: 80.1
 3379,Alphonse Areola,,Villarreal,2992.51,La Liga,2992.51,2992.51,32,Goalkeeper,2992.51,Goalkeeper: 2992.5
+5676,Cheikh N''Doye,Cheikh N'Doye,Angers,2989.79,Ligue 1,2989.79,2989.79,32,Right Center Midfield,1679.05,Right Center Midfield: 1679.0; Right Defensive Midfield: 470.6; Left Center Forward: 187.2; Right Center Midfield: 186.6; Left Center Midfield: 185.2; Right Midfield: 94.1; Center Attacking Midfield: 94.1; Center Forward: 92.9
 6320,Filipe Luís Kasmirski,Filipe Luis,Atlético Madrid,2984.8,La Liga,2984.8,2984.8,32,Left Back,2891.05,Left Back: 2891.1; Left Wing Back: 93.7
 6772,Mario Gaspar Pérez Martínez,Mario Gaspar,Villarreal,2984.58,La Liga,2984.58,2984.58,33,Right Back,2610.8,Right Back: 2610.8; Right Center Back: 373.8
 6849,Lucas Digne,,AS Roma,2984.37,Serie A,2984.37,2984.37,33,Left Back,2703.7,Left Back: 2703.7; Left Center Back: 280.7
@@ -261,6 +262,7 @@
 6869,Alejandro Arribas Garrido,Alejandro Arribas,RC Deportivo La Coruña,2857.85,La Liga,2857.85,2857.85,31,Right Center Back,2764.86,Right Center Back: 2764.9; Left Center Back: 93.0
 6389,Mikel San José Domínguez,Mikel San José,Athletic Club,2854.01,La Liga,2854.01,2854.01,34,Right Defensive Midfield,1622.59,Right Defensive Midfield: 1622.6; Left Defensive Midfield: 493.4; Left Center Back: 399.1; Center Defensive Midfield: 123.0; Center Attacking Midfield: 93.1; Center Back: 93.0; Right Wing: 29.8
 3472,Willian Borges da Silva,Willian,Chelsea,2851.27,Premier League,2851.27,2851.27,35,Right Wing,1761.17,Right Wing: 1761.2; Center Attacking Midfield: 488.9; Right Center Midfield: 283.7; Left Center Midfield: 131.9; Left Wing: 94.2; Right Midfield: 91.4
+3054,Fernando Luiz Rosa,Fernandinho,Manchester City,2848.33,Premier League,2848.33,2848.33,33,Left Defensive Midfield,1122.27,Left Defensive Midfield: 1122.3; Left Center Midfield: 749.2; Right Defensive Midfield: 304.3; Right Center Midfield: 294.3; Right Center Back: 96.2; Left Center Midfield: 94.8; Center Defensive Midfield: 94.3; Center Attacking Midfield: 93.0
 6943,Andrea Barzagli,,Juventus,2846.19,Serie A,2846.19,2846.19,31,Right Center Back,1814.78,Right Center Back: 1814.8; Left Center Back: 848.3; Right Back: 93.1; Center Back: 90.0
 3812,Christian Fuchs,,Leicester City,2845.38,Premier League,2845.38,2845.38,32,Left Back,2813.35,Left Back: 2813.4; Left Midfield: 18.5; Right Wing: 13.5
 3583,Ashley Westwood,,Aston Villa,2845.32,Premier League,2845.32,2845.32,32,Right Center Midfield,849.99,Right Center Midfield: 850.0; Left Center Midfield: 730.5; Center Defensive Midfield: 545.8; Right Defensive Midfield: 375.6; Left Defensive Midfield: 320.3; Center Forward: 23.1
@@ -281,7 +283,6 @@
 8440,Aythami Artiles Oliva,Aythami Artiles,Las Palmas,2812.36,La Liga,2812.36,2812.36,31,Right Center Back,1680.99,Right Center Back: 1681.0; Left Center Back: 628.9; Center Back: 409.5; Center Defensive Midfield: 93.1
 5503,Lionel Andrés Messi Cuccittini,Lionel Messi,Barcelona,2807.66,La Liga,2807.66,2807.66,33,Right Wing,2531.41,Right Wing: 2531.4; Center Attacking Midfield: 92.3; Center Forward: 92.0; Right Center Forward: 92.0
 40121,Philipp Wollscheid,,Stoke City,2806.9,Premier League,2806.9,2806.9,31,Left Center Back,2400.74,Left Center Back: 2400.7; Right Center Back: 406.2
-5676,Cheikh N''Doye,Cheikh N'Doye,Angers,2989.79,Ligue 1,2989.79,2803.23,30,Right Center Midfield,1679.05,Right Center Midfield: 1679.0; Right Defensive Midfield: 470.6; Left Center Forward: 187.2; Right Center Midfield: 186.6; Left Center Midfield: 185.2; Right Midfield: 94.1; Center Attacking Midfield: 94.1; Center Forward: 92.9
 3531,Mohamed Salah,,AS Roma,2797.24,Serie A,2797.24,2797.24,34,Right Wing,1854.98,Right Wing: 1855.0; Right Center Forward: 442.6; Right Midfield: 255.0; Left Wing: 170.0; Center Attacking Midfield: 74.7
 6665,Íñigo Martínez Berridi,Íñigo Martínez,Real Sociedad,2797.06,La Liga,2797.06,2797.06,30,Left Center Back,2797.06,Left Center Back: 2797.1
 3090,Nicolás Hernán Otamendi,Nicolás Otamendi,Manchester City,2785.16,Premier League,2785.16,2785.16,30,Right Center Back,1750.95,Right Center Back: 1750.9; Left Center Back: 1034.2
@@ -308,7 +309,6 @@
 7349,Gaël Danic,,Bastia,2756.92,Ligue 1,2756.92,2756.92,36,Left Midfield,673.25,Left Midfield: 673.2; Left Wing: 634.9; Right Wing: 536.0; Center Attacking Midfield: 368.4; Right Center Forward: 223.8; Right Midfield: 213.5; Left Defensive Midfield: 75.7; Left Wing Back: 31.5
 6738,Juan Francisco Moreno Fuertes,Juanfran,RC Deportivo La Coruña,2756.78,La Liga,2756.78,2756.78,35,Right Back,1681.57,Right Back: 1681.6; Right Wing: 485.7; Left Back: 274.2; Right Midfield: 164.2; Right Center Midfield: 69.2; Left Wing Back: 47.0; Left Wing: 34.9
 3167,Antonio Rüdiger,,AS Roma,2756.21,Serie A,2756.21,2756.21,30,Left Center Back,1720.88,Left Center Back: 1720.9; Right Center Back: 656.3; Right Back: 285.0; Left Back: 94.0
-3054,Fernando Luiz Rosa,Fernandinho,Manchester City,2848.33,Premier League,2848.33,2753.56,32,Left Defensive Midfield,1122.27,Left Defensive Midfield: 1122.3; Left Center Midfield: 749.2; Right Defensive Midfield: 304.3; Right Center Midfield: 294.3; Right Center Back: 96.2; Left Center Midfield: 94.8; Center Defensive Midfield: 94.3; Center Attacking Midfield: 93.0
 6716,Sébastien Corchia,,Lille,2753.28,Ligue 1,2753.28,2753.28,33,Right Back,2356.61,Right Back: 2356.6; Right Wing Back: 396.7
 6745,Mehdi Lacen,,Getafe,2752.92,La Liga,2752.92,2752.92,31,Left Defensive Midfield,2043.83,Left Defensive Midfield: 2043.8; Center Defensive Midfield: 374.6; Right Defensive Midfield: 278.7; Left Center Midfield: 55.7
 6668,José Luis Morales Nogales,José Luis Morales,Levante UD,2752.47,La Liga,2752.47,2752.47,35,Left Midfield,1037.15,Left Midfield: 1037.2; Right Midfield: 497.0; Left Wing: 398.8; Right Wing Back: 367.4; Right Wing: 265.7; Right Back: 93.3; Center Attacking Midfield: 93.1
@@ -640,6 +640,7 @@
 6739,Diego Alejandro Rolan Silva,Diego Rolán,Bordeaux,2123.74,Ligue 1,2123.74,2123.74,30,Right Wing,475.28,Right Wing: 475.3; Left Center Forward: 402.0; Left Wing: 360.6; Center Attacking Midfield: 349.2; Right Midfield: 243.1; Left Midfield: 210.9; Right Center Forward: 82.7
 8572,Karim Rekik,,Olympique de Marseille,1409.66,Ligue 1,2117.81,2117.81,24,Left Center Back,2117.81,Left Center Back: 2117.8
 3810,Shinji Okazaki,,Leicester City,2116.4,Premier League,2116.4,2116.4,36,Right Center Forward,1446.95,Right Center Forward: 1446.9; Left Center Forward: 396.3; Left Midfield: 132.8; Right Midfield: 92.3; Center Attacking Midfield: 48.1
+16890,John O''Shea,John O'Shea,Sunderland,2116.35,Premier League,2116.35,2116.35,28,Left Center Back,900.33,Left Center Back: 900.3; Right Center Back: 735.2; Center Back: 355.2; Center Back: 95.0; Center Defensive Midfield: 30.6
 3958,Pedro Eliezer Rodríguez Ledesma,Pedro,Chelsea,2112.75,Premier League,2112.75,2112.75,29,Left Wing,1130.36,Left Wing: 1130.4; Right Wing: 614.2; Right Midfield: 126.3; Right Wing Back: 94.4; Left Midfield: 82.5; Left Center Midfield: 65.0
 30735,Mato Jajalo,,Palermo,2112.01,Serie A,2112.01,2112.01,28,Center Defensive Midfield,898.15,Center Defensive Midfield: 898.1; Right Defensive Midfield: 564.2; Left Center Midfield: 371.6; Right Center Midfield: 176.6; Left Defensive Midfield: 74.6; Right Attacking Midfield: 25.0; Right Center Forward: 1.9
 3063,Danilo Luiz da Silva,Danilo,Real Madrid,2108.56,La Liga,2108.56,2108.56,24,Right Back,1553.01,Right Back: 1553.0; Left Back: 462.4; Right Wing: 93.1
@@ -683,7 +684,6 @@
 3179,Nolan Roux,,Saint-Étienne,2033.39,Ligue 1,2033.39,2033.39,28,Center Forward,924.67,Center Forward: 924.7; Right Wing: 525.3; Left Wing: 232.5; Left Center Forward: 218.8; Center Attacking Midfield: 97.4; Right Center Forward: 34.8
 6878,Miguel Torres Gómez,Miguel Torres,Málaga,2030.82,La Liga,2030.82,2030.82,23,Left Back,1568.69,Left Back: 1568.7; Right Back: 370.1; Left Center Back: 92.0
 7155,Vincent Laurini,,Empoli,2029.29,Serie A,2029.29,2029.29,25,Right Back,1556.99,Right Back: 1557.0; Right Center Back: 378.1; Left Center Back: 94.2
-16890,John O''Shea,John O'Shea,Sunderland,2116.35,Premier League,2116.35,2021.35,27,Left Center Back,900.33,Left Center Back: 900.3; Right Center Back: 735.2; Center Back: 355.2; Center Back: 95.0; Center Defensive Midfield: 30.6
 3456,Kurt Happy Zouma,Kurt Zouma,Chelsea,2019.78,Premier League,2019.78,2019.78,23,Right Center Back,1575.2,Right Center Back: 1575.2; Center Back: 189.7; Right Back: 189.4; Left Center Back: 46.5; Right Center Midfield: 19.0
 19677,Karim Benzema,,Real Madrid,2018.77,La Liga,2018.77,2018.77,27,Center Forward,2018.77,Center Forward: 2018.8
 6651,Joaquín Sánchez Rodríguez,Joaquín,Real Betis,2015.56,La Liga,2015.56,2015.56,30,Right Wing,798.41,Right Wing: 798.4; Right Midfield: 606.2; Center Attacking Midfield: 217.4; Left Wing: 178.2; Left Midfield: 102.9; Right Center Midfield: 93.0; Right Defensive Midfield: 19.4
@@ -722,6 +722,7 @@
 3065,Paul Dummett,,Newcastle United,1974.54,Premier League,1974.54,1974.54,23,Left Back,1880.57,Left Back: 1880.6; Left Wing Back: 94.0
 7051,Daniele De Rossi,,AS Roma,1974.3,Serie A,1974.3,1974.3,24,Center Defensive Midfield,731.69,Center Defensive Midfield: 731.7; Left Center Back: 469.4; Right Defensive Midfield: 356.1; Left Defensive Midfield: 279.0; Left Center Midfield: 94.4; Center Back: 42.6; Unknown: 1.2
 7474,Afriyie Acquah,,Torino,1971.45,Serie A,1971.45,1971.45,29,Right Center Midfield,1757.98,Right Center Midfield: 1758.0; Right Defensive Midfield: 213.5
+3424,Cheikh M''Bengue,Cheikh M'Bengue,Rennes,1969.61,Ligue 1,1969.61,1969.61,23,Left Back,1572.81,Left Back: 1572.8; Left Back: 314.1; Left Wing Back: 67.0; Left Wing: 15.7
 4349,Issa Diop,,Toulouse,1968.06,Ligue 1,1968.06,1968.06,21,Right Center Back,1688.44,Right Center Back: 1688.4; Center Back: 279.6
 3024,Jacques François Moubandje,François Moubandje,Toulouse,1965.58,Ligue 1,1965.58,1965.58,23,Left Back,1771.42,Left Back: 1771.4; Left Wing Back: 194.2
 3413,Kévin Théophile-Catherine,,Saint-Étienne,1965.14,Ligue 1,1965.14,1965.14,21,Right Back,1592.63,Right Back: 1592.6; Right Center Back: 372.5
@@ -906,7 +907,6 @@
 3189,Étienne Didot,,Toulouse,1660.64,Ligue 1,1660.64,1660.64,23,Center Defensive Midfield,478.16,Center Defensive Midfield: 478.2; Left Defensive Midfield: 407.5; Right Defensive Midfield: 393.6; Left Center Midfield: 216.6; Right Center Midfield: 83.9; Center Attacking Midfield: 80.8
 6927,David García Santana,David García,Las Palmas,1658.57,La Liga,1658.57,1658.57,19,Right Back,1032.09,Right Back: 1032.1; Right Center Back: 626.5
 3328,James Ward-Prowse,,Southampton,1655.9,Premier League,1655.9,1655.9,33,Right Center Midfield,412.3,Right Center Midfield: 412.3; Center Attacking Midfield: 286.5; Right Wing: 282.3; Left Center Midfield: 195.0; Right Defensive Midfield: 183.3; Left Defensive Midfield: 173.8; Right Midfield: 70.4; Left Wing: 52.2
-3424,Cheikh M''Bengue,Cheikh M'Bengue,Rennes,1969.61,Ligue 1,1969.61,1655.52,19,Left Back,1572.81,Left Back: 1572.8; Left Back: 314.1; Left Wing Back: 67.0; Left Wing: 15.7
 7435,Anthony Weber,,Stade de Reims,1654.72,Ligue 1,1654.72,1654.72,19,Left Center Back,1654.72,Left Center Back: 1654.7
 6393,Iñaki Williams Arthuer,Iñaki Williams,Athletic Club,1652.0,La Liga,1652.0,1652.0,25,Right Wing,1197.58,Right Wing: 1197.6; Left Wing: 321.5; Right Midfield: 77.3; Center Forward: 55.5
 3162,Gnaly Maxwell Cornet,Maxwel Cornet,Lyon,1649.17,Ligue 1,1649.17,1649.17,31,Left Wing,927.52,Left Wing: 927.5; Right Wing: 445.1; Right Center Forward: 128.1; Right Midfield: 83.7; Right Center Midfield: 22.9; Left Center Forward: 16.8; Center Forward: 13.2; Center Attacking Midfield: 12.0
@@ -1373,6 +1373,7 @@
 32525,Fabrizio Poli,,Carpi,885.16,Serie A,885.16,885.16,10,Left Center Back,339.94,Left Center Back: 339.9; Right Back: 285.6; Left Back: 164.6; Left Wing Back: 95.0
 4347,Jordan Amavi,,Aston Villa,884.66,Premier League,884.66,884.66,10,Left Back,884.66,Left Back: 884.7
 9638,Jack Grealish,,Aston Villa,882.3,Premier League,882.3,882.3,16,Center Attacking Midfield,440.34,Center Attacking Midfield: 440.3; Left Wing: 225.4; Left Midfield: 105.3; Right Wing: 64.7; Left Center Midfield: 27.5; Right Center Forward: 19.1
+401453,David N'Gog,,Stade de Reims,881.94,Ligue 1,881.94,881.94,16,Center Forward,601.34,Center Forward: 601.3; Left Center Forward: 169.3; Right Center Forward: 75.4; Right Midfield: 21.3; Center Attacking Midfield: 14.6
 3318,Marcus Rashford,,Manchester United,876.86,Premier League,876.86,876.86,11,Center Forward,802.47,Center Forward: 802.5; Right Midfield: 74.4
 7146,Goran Pandev,,Genoa,875.71,Serie A,875.71,875.71,15,Left Center Forward,551.23,Left Center Forward: 551.2; Center Forward: 271.0; Right Center Forward: 40.6; Left Attacking Midfield: 12.9
 8296,Alessandro Matri,,Lazio,874.48,Serie A,874.48,874.48,19,Center Forward,703.27,Center Forward: 703.3; Left Center Forward: 127.7; Right Center Forward: 28.7; Center Attacking Midfield: 14.8
@@ -1422,10 +1423,10 @@
 4345,Lucas Ariel Ocampos,Lucas Ocampos,Olympique de Marseille,537.63,Ligue 1,814.43,814.43,17,Left Wing,361.64,Left Wing: 361.6; Right Wing: 195.1; Center Attacking Midfield: 107.0; Left Wing Back: 93.1; Left Center Midfield: 29.7; Center Forward: 28.0
 7237,Chaker Alhadhur,,Stade Malherbe Caen,720.94,Ligue 1,814.35,814.35,10,Left Back,814.35,Left Back: 814.3
 6735,Adrián López Álvarez,Adrián López,Villarreal,813.74,La Liga,813.74,813.74,16,Left Center Forward,475.57,Left Center Forward: 475.6; Right Center Forward: 338.2
+13248,Eunan O''Kane,Eunan O'Kane,AFC Bournemouth,812.5,Premier League,812.5,812.5,16,Right Center Midfield,417.85,Right Center Midfield: 417.8; Left Center Midfield: 179.2; Right Defensive Midfield: 97.4; Center Attacking Midfield: 85.9; Center Attacking Midfield: 32.2
 3616,Callum Wilson,,AFC Bournemouth,812.12,Premier League,812.12,812.12,13,Center Forward,318.64,Center Forward: 318.6; Right Center Forward: 287.0; Left Center Forward: 206.4
 6783,Samuel García Sánchez,Samu,Villarreal,810.33,La Liga,810.33,810.33,16,Right Midfield,391.09,Right Midfield: 391.1; Right Center Forward: 204.7; Center Forward: 94.0; Right Wing: 57.8; Left Center Forward: 32.1; Left Midfield: 30.6
 5663,Jakub Błaszczykowski,,Fiorentina,807.31,Serie A,807.31,807.31,15,Right Wing Back,421.6,Right Wing Back: 421.6; Left Wing Back: 189.1; Right Wing: 107.9; Center Forward: 35.4; Left Wing: 25.1; Left Midfield: 15.5; Left Back: 12.6
-401453,"David N""Gog",,Stade de Reims,881.94,Ligue 1,881.94,806.55,15,Center Forward,601.34,Center Forward: 601.3; Left Center Forward: 169.3; Right Center Forward: 75.4; Right Midfield: 21.3; Center Attacking Midfield: 14.6
 40333,Cristian Raimondi,,Atalanta,805.11,Serie A,805.11,805.11,18,Right Back,368.13,Right Back: 368.1; Right Midfield: 156.6; Right Wing: 108.7; Right Wing Back: 77.8; Center Attacking Midfield: 47.9; Right Center Forward: 30.3; Left Wing: 15.6
 10868,Ricardo Jorge Luz Horta,Ricardo Horta,Málaga,803.69,La Liga,803.69,803.69,17,Left Midfield,376.72,Left Midfield: 376.7; Right Wing: 189.8; Left Wing: 133.1; Right Midfield: 78.3; Center Attacking Midfield: 25.8
 11813,Emiliano Buendía,,Getafe,803.29,La Liga,803.29,803.29,17,Right Back,321.83,Right Back: 321.8; Center Attacking Midfield: 220.6; Left Center Forward: 93.0; Right Center Midfield: 65.8; Right Wing: 55.2; Left Defensive Midfield: 40.5; Center Forward: 6.3
@@ -1445,7 +1446,6 @@
 5558,Rafael Márquez Álvarez,Rafael Márquez,Hellas Verona,783.31,Serie A,783.31,783.31,9,Right Center Back,595.25,Right Center Back: 595.2; Center Back: 188.1
 8469,Jean-Christophe Bahebeck,,Saint-Étienne,782.4,Ligue 1,782.4,782.4,15,Left Wing,355.19,Left Wing: 355.2; Right Wing: 297.3; Right Midfield: 100.0; Left Midfield: 30.0
 4741,Juan Rafael Fuentes Hernández,Juan Rafael Fuentes,Espanyol,780.45,La Liga,780.45,780.45,10,Left Back,780.45,Left Back: 780.5
-13248,Eunan O''Kane,Eunan O'Kane,AFC Bournemouth,812.5,Premier League,812.5,780.28,15,Right Center Midfield,417.85,Right Center Midfield: 417.8; Left Center Midfield: 179.2; Right Defensive Midfield: 97.4; Center Attacking Midfield: 85.9; Center Attacking Midfield: 32.2
 26107,Alberto Lopo García,Alberto Lopo,RC Deportivo La Coruña,773.1,La Liga,773.1,773.1,10,Right Center Back,681.09,Right Center Back: 681.1; Center Back: 92.0
 22130,Mauro Daniel Goicoechea Furia,Mauro Goicoechea,Toulouse,769.96,Ligue 1,769.96,769.96,9,Goalkeeper,769.96,Goalkeeper: 770.0
 40822,Daniel Arnaud N''Di	,Dani Ndi,Sporting Gijón,769.75,La Liga,769.75,769.75,15,Center Attacking Midfield,420.04,Center Attacking Midfield: 420.0; Right Wing: 159.4; Center Forward: 77.3; Left Center Forward: 59.4; Left Wing: 44.0; Right Center Forward: 9.6
@@ -1763,7 +1763,6 @@
 27345,Didier Digard,,Real Betis,318.28,La Liga,318.28,318.28,8,Left Center Midfield,94.1,Left Center Midfield: 94.1; Right Defensive Midfield: 56.9; Left Center Back: 56.1; Center Defensive Midfield: 48.1; Left Midfield: 40.8; Left Defensive Midfield: 18.1; Left Center Forward: 4.2
 398941,Vasyl Pryyma,,Frosinone,317.61,Serie A,317.61,317.61,5,Left Center Back,312.83,Left Center Back: 312.8; Right Back: 4.8
 9551,Callum McManaman,,West Bromwich Albion,317.35,Premier League,317.35,317.35,12,Right Midfield,187.15,Right Midfield: 187.1; Left Midfield: 73.9; Left Center Midfield: 25.0; Left Wing: 14.4; Left Back: 14.0; Left Center Forward: 3.0
-3424,Cheikh M'Bengue,Cheikh M'Bengue,Rennes,1969.61,Ligue 1,1969.61,314.09,4,Left Back,1572.81,Left Back: 1572.8; Left Back: 314.1; Left Wing Back: 67.0; Left Wing: 15.7
 30454,Francisco José Sánchez Rodríguez,Curro Sánchez,Sevilla,314.07,La Liga,314.07,314.07,4,Right Wing,128.94,Right Wing: 128.9; Left Center Midfield: 93.0; Right Midfield: 92.1
 4738,Lee Tomlin,,AFC Bournemouth,313.97,Premier League,313.97,313.97,6,Center Attacking Midfield,255.27,Center Attacking Midfield: 255.3; Left Center Forward: 34.6; Left Midfield: 24.1
 13448,Bradley Shaun Smith,,Liverpool,313.06,Premier League,313.06,313.06,4,Left Back,313.06,Left Back: 313.1
@@ -1871,7 +1870,6 @@
 5109,Paulo Dino Gazzaniga,Paulo Gazzaniga,Southampton,187.87,Premier League,187.87,187.87,2,Goalkeeper,187.87,Goalkeeper: 187.9
 9403,Izet Hajrović,,Eibar,187.59,La Liga,187.59,187.59,7,Left Wing,77.81,Left Wing: 77.8; Left Midfield: 67.8; Right Midfield: 25.7; Right Wing: 16.3
 3468,Jordan Pickford,,Sunderland,187.1,Premier League,187.1,187.1,2,Goalkeeper,187.1,Goalkeeper: 187.1
-5676,Cheikh N'Doye,Cheikh N'Doye,Angers,2989.79,Ligue 1,2989.79,186.56,2,Right Center Midfield,1679.05,Right Center Midfield: 1679.0; Right Defensive Midfield: 470.6; Left Center Forward: 187.2; Right Center Midfield: 186.6; Left Center Midfield: 185.2; Right Midfield: 94.1; Center Attacking Midfield: 94.1; Center Forward: 92.9
 27155,Bojan Jokić,,Villarreal,186.53,La Liga,186.53,186.53,2,Left Back,186.53,Left Back: 186.5
 24021,Paul Nardi,,AS Monaco,186.39,Ligue 1,186.39,186.39,2,Goalkeeper,186.39,Goalkeeper: 186.4
 8520,Nabil Bentaleb,,Tottenham Hotspur,186.04,Premier League,186.04,186.04,5,Left Center Midfield,171.41,Left Center Midfield: 171.4; Center Attacking Midfield: 8.2; Left Defensive Midfield: 6.4
@@ -1903,6 +1901,7 @@
 6863,Mauro Wilney Arambarri Rosa,Mauro Arambarri,Bordeaux,163.75,Ligue 1,163.75,163.75,5,Right Defensive Midfield,52.24,Right Defensive Midfield: 52.2; Right Center Midfield: 51.7; Center Attacking Midfield: 30.8; Left Defensive Midfield: 29.0
 4599,Quentin Cornette,,Montpellier,162.42,Ligue 1,162.42,162.42,5,Right Wing,86.37,Right Wing: 86.4; Left Wing: 52.9; Right Attacking Midfield: 23.2
 4465,Gabriel Boschilia,,AS Monaco,161.83,Ligue 1,161.83,161.83,5,Center Attacking Midfield,84.61,Center Attacking Midfield: 84.6; Right Wing: 49.2; Left Wing: 28.1
+40700,Mamadou N''Diaye,,Montpellier,161.55,Ligue 1,161.55,161.55,8,Left Back,61.04,Left Back: 61.0; Right Back: 45.0; Left Back: 28.4; Left Wing: 14.6; Left Wing Back: 10.0; Unknown: 2.5
 31737,Michele Camporese,,Empoli,160.47,Serie A,160.47,160.47,2,Left Center Back,160.47,Left Center Back: 160.5
 6330,Adnan Januzaj,,Manchester United,160.36,Premier League,160.36,160.36,5,Center Attacking Midfield,126.85,Center Attacking Midfield: 126.8; Center Forward: 15.8; Left Wing Back: 9.4; Right Back: 8.3
 6358,Emil Krafth,,Bologna,158.24,Serie A,158.24,158.24,4,Right Back,158.24,Right Back: 158.2
@@ -1931,7 +1930,6 @@
 25351,Alexandre Rodrigues da Silva,Alexandre Pato,Chelsea,134.08,Premier League,134.08,134.08,2,Center Forward,134.08,Center Forward: 134.1
 40321,Andrea Coda,,Sampdoria,133.22,Serie A,133.22,133.22,4,Left Center Back,126.21,Left Center Back: 126.2; Center Back: 7.0
 8675,Jonathan de Guzmán,,Carpi,131.45,Serie A,131.45,131.45,5,Center Attacking Midfield,71.19,Center Attacking Midfield: 71.2; Left Midfield: 30.9; Left Center Midfield: 29.4
-40700,Mamadou N''Diaye,,Montpellier,161.55,Ligue 1,161.55,130.62,6,Left Back,61.04,Left Back: 61.0; Right Back: 45.0; Left Back: 28.4; Left Wing: 14.6; Left Wing Back: 10.0; Unknown: 2.5
 26647,Henok Goitom,,Getafe,130.43,La Liga,130.43,130.43,2,Right Center Forward,93.05,Right Center Forward: 93.0; Center Forward: 37.4
 6617,Ibai Gómez Pérez,Ibai Gómez,Athletic Club,128.88,La Liga,128.88,128.88,5,Left Wing,114.87,Left Wing: 114.9; Left Midfield: 14.0
 28357,Thomas Vincensini,,Bastia,128.16,Ligue 1,128.16,128.16,2,Goalkeeper,128.16,Goalkeeper: 128.2
@@ -1964,15 +1962,11 @@
 40485,Ryan Isaac Mendes da Graça,Ryan Mendes,Lille,101.01,Ligue 1,101.01,101.01,3,Right Midfield,81.74,Right Midfield: 81.7; Right Wing: 19.3
 6846,Andreas Hoelgebaum Pereira,Andreas Pereira,Manchester United,99.24,Premier League,99.24,99.24,4,Right Defensive Midfield,65.66,Right Defensive Midfield: 65.7; Center Attacking Midfield: 22.1; Left Center Midfield: 11.5
 40453,Segundo Víctor Ibarbo Guerrero,Víctor Ibarbo,Watford,84.79,Premier League,84.79,97.72,6,Right Midfield,51.75,Right Midfield: 51.8; Left Midfield: 19.1; Left Center Midfield: 13.9; Right Wing: 11.4; Center Forward: 1.5
-3961,N'Golo Kanté,N'Golo Kanté,Leicester City,3180.09,Premier League,3180.09,95.71,1,Left Defensive Midfield,1100.84,Left Defensive Midfield: 1100.8; Left Center Midfield: 949.2; Right Center Midfield: 653.3; Right Defensive Midfield: 317.0; Left Defensive Midfield: 95.7; Center Attacking Midfield: 33.5; Left Midfield: 16.9; Left Center Forward: 13.7
 41231,Maurizio Pugliesi,,Empoli,95.66,Serie A,95.66,95.66,1,Goalkeeper,95.66,Goalkeeper: 95.7
 30767,Gabriel Vasconelos Ferreira,,Napoli,95.59,Serie A,95.59,95.59,1,Goalkeeper,95.59,Goalkeeper: 95.6
 43121,Kelvin Davis,,Southampton,95.2,Premier League,95.2,95.2,1,Goalkeeper,95.2,Goalkeeper: 95.2
-4429,Yann Gérard M'Vila,Yann M'Vila,Sunderland,3336.43,Premier League,3336.43,95.01,1,Right Center Midfield,1175.1,Right Center Midfield: 1175.1; Left Defensive Midfield: 748.8; Left Center Midfield: 566.2; Center Defensive Midfield: 561.7; Right Defensive Midfield: 189.6; Right Defensive Midfield: 95.0
-16890,John O'Shea,John O'Shea,Sunderland,2116.35,Premier League,2116.35,95.01,1,Left Center Back,900.33,Left Center Back: 900.3; Right Center Back: 735.2; Center Back: 355.2; Center Back: 95.0; Center Defensive Midfield: 30.6
 27240,Jesús Fernández Collado,Jesús Fernández,Granada,94.99,La Liga,94.99,94.99,1,Goalkeeper,94.99,Goalkeeper: 95.0
 2967,Mamadou Samassa,,Guingamp,94.92,Ligue 1,94.92,94.92,1,Goalkeeper,94.92,Goalkeeper: 94.9
-3054,Fernando Luiz Roza,Fernandinho,Manchester City,2848.33,Premier League,2848.33,94.77,1,Left Defensive Midfield,1122.27,Left Defensive Midfield: 1122.3; Left Center Midfield: 749.2; Right Defensive Midfield: 304.3; Right Center Midfield: 294.3; Right Center Back: 96.2; Left Center Midfield: 94.8; Center Defensive Midfield: 94.3; Center Attacking Midfield: 93.0
 11212,Fábio Ricardo Gomes Fonseca,Fábio Espinho,Málaga,94.71,La Liga,94.71,94.71,2,Right Wing,94.71,Right Wing: 94.7
 8981,Antoine Rabillard,,Olympique de Marseille,94.7,Ligue 1,94.7,94.7,3,Center Forward,58.47,Center Forward: 58.5; Center Attacking Midfield: 22.0; Right Defensive Midfield: 14.3
 3609,Michel Vorm,,Tottenham Hotspur,94.37,Premier League,94.37,94.37,1,Goalkeeper,94.37,Goalkeeper: 94.4
@@ -1983,15 +1977,15 @@
 41067,Davide Bassi,,Atalanta,93.97,Serie A,93.97,93.97,1,Goalkeeper,93.97,Goalkeeper: 94.0
 7769,Federico Mattiello,,Chievo,93.87,Serie A,93.87,93.87,1,Right Back,93.87,Right Back: 93.9
 24318,Alberto Guitián Ceballos,Alberto Guitián,Sporting Gijón,93.81,La Liga,93.81,93.81,1,Right Center Back,93.81,Right Center Back: 93.8
-23936,Antonio Jesús Cotán Pérez,Antonio Cotán,Sevilla,93.59,La Liga,93.59,93.59,1,Right Defensive Midfield,93.59,Right Defensive Midfield: 93.6
 23972,José Joaquín Matos García,José Matos,Sevilla,93.59,La Liga,93.59,93.59,1,Left Back,93.59,Left Back: 93.6
+23936,Antonio Jesús Cotán Pérez,Antonio Cotán,Sevilla,93.59,La Liga,93.59,93.59,1,Right Defensive Midfield,93.59,Right Defensive Midfield: 93.6
 4803,Mathieu Gorgelin,,Lyon,93.29,Ligue 1,93.29,93.29,1,Goalkeeper,93.29,Goalkeeper: 93.3
 40531,Erwin Koffi,,Lorient,93.17,Ligue 1,93.17,93.17,1,Right Back,93.17,Right Back: 93.2
 27154,Nikolaos Karabelas,,Levante UD,93.14,La Liga,93.14,93.14,1,Left Back,93.14,Left Back: 93.1
 386514,Luca Martinelli,,Empoli,93.11,Serie A,93.11,93.11,1,Right Center Back,93.11,Right Center Back: 93.1
-44955,Aïssa Bilal Laïdouni,Aïssa Laïdouni,Angers,93.09,Ligue 1,93.09,93.09,1,Right Back,93.09,Right Back: 93.1
 75537,David Goldar Gómez,David Goldar,Celta Vigo,93.09,La Liga,93.09,93.09,1,Right Center Back,93.09,Right Center Back: 93.1
 26941,Francisco Javier García Noblejas Hernanz,Javi Noblejas,Getafe,93.09,La Liga,93.09,93.09,1,Left Back,93.09,Left Back: 93.1
+44955,Aïssa Bilal Laïdouni,Aïssa Laïdouni,Angers,93.09,Ligue 1,93.09,93.09,1,Right Back,93.09,Right Back: 93.1
 24711,David Carmona Sierra,David Carmona,Sevilla,93.05,La Liga,93.05,93.05,1,Right Back,93.05,Right Back: 93.0
 7904,Javi Castellano Betancor,Javi Castellano,Las Palmas,93.03,La Liga,93.03,93.03,1,Right Defensive Midfield,93.03,Right Defensive Midfield: 93.0
 9563,Kristoffer Nordfeldt,,Swansea City,93.0,Premier League,93.0,93.0,1,Goalkeeper,93.0,Goalkeeper: 93.0
@@ -2018,7 +2012,6 @@
 25057,Alejandro Barrera García,Álex Barrera,Sporting Gijón,76.43,La Liga,76.43,76.43,5,Center Attacking Midfield,31.44,Center Attacking Midfield: 31.4; Left Wing: 19.7; Center Forward: 12.9; Right Center Forward: 12.4
 16014,Jean Pierre Nsamé,,Angers,76.23,Ligue 1,76.23,76.23,5,Center Forward,40.66,Center Forward: 40.7; Right Wing: 18.0; Left Center Midfield: 14.8; Left Wing: 2.7
 26197,Christian Abbiati,,AC Milan,75.45,Serie A,75.45,75.45,1,Goalkeeper,75.45,Goalkeeper: 75.5
-401453,David N'Gog,,Stade de Reims,881.94,Ligue 1,881.94,75.39,1,Center Forward,601.34,Center Forward: 601.3; Left Center Forward: 169.3; Right Center Forward: 75.4; Right Midfield: 21.3; Center Attacking Midfield: 14.6
 24249,Juan Muñiz Gallego,Juan Muñiz,Sporting Gijón,74.15,La Liga,74.15,74.15,4,Right Midfield,23.27,Right Midfield: 23.3; Left Midfield: 19.5; Right Center Forward: 17.6; Left Wing: 13.7
 26827,Ravel Morrison,,Lazio,73.18,Serie A,73.18,73.18,4,Center Attacking Midfield,57.78,Center Attacking Midfield: 57.8; Left Center Midfield: 13.0; Right Defensive Midfield: 2.4
 3165,Emmanuel Rivière,,Newcastle United,72.34,Premier League,72.34,72.34,3,Center Forward,45.0,Center Forward: 45.0; Left Wing: 20.2; Right Center Forward: 7.1
@@ -2093,10 +2086,8 @@
 197595,Sergio Mendigutxia Iglesias,,Sporting Gijón,32.9,La Liga,32.9,32.9,1,Right Wing,32.9,Right Wing: 32.9
 31265,Michele Rocca,,Sampdoria,32.81,Serie A,32.81,32.81,1,Right Wing Back,32.81,Right Wing Back: 32.8
 5460,Andrej Kramarić,,Leicester City,32.71,Premier League,32.71,32.71,2,Left Center Midfield,16.79,Left Center Midfield: 16.8; Right Center Forward: 15.9
-13248,Eunan O'Kane,Eunan O'Kane,AFC Bournemouth,812.5,Premier League,812.5,32.22,1,Right Center Midfield,417.85,Right Center Midfield: 417.8; Left Center Midfield: 179.2; Right Defensive Midfield: 97.4; Center Attacking Midfield: 85.9; Center Attacking Midfield: 32.2
 21229,Sergi Samper Montaña,Sergi Samper,Barcelona,31.7,La Liga,31.7,31.7,1,Center Defensive Midfield,31.7,Center Defensive Midfield: 31.7
 5602,Cristian Gamboa Luna,Cristian Gamboa,West Bromwich Albion,31.57,Premier League,31.57,31.57,1,Left Midfield,31.57,Left Midfield: 31.6
-40700,Mamadou N'Diaye,,Montpellier,161.55,Ligue 1,161.55,30.93,2,Left Back,61.04,Left Back: 61.0; Right Back: 45.0; Left Back: 28.4; Left Wing: 14.6; Left Wing Back: 10.0; Unknown: 2.5
 6840,Marcos Llorente Moreno,Marcos Llorente,Real Madrid,30.83,La Liga,30.83,30.83,2,Left Center Midfield,30.83,Left Center Midfield: 30.8
 403392,Diego Gómez,,Angers,30.64,Ligue 1,30.64,30.64,1,Left Center Midfield,30.64,Left Center Midfield: 30.6
 8866,Carlos Fernández Luna,Carlos Fernández,Sevilla,29.4,La Liga,29.4,29.4,1,Left Center Forward,29.4,Left Center Forward: 29.4

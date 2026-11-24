@@ -1,0 +1,384 @@
+# Position taxonomy and role-specific metric configuration.
+# Metric names must match the columns in the processed player CSV
+# (per-90 and *_percentile variants are derived from these base names).
+# These are statistical indicators, not a complete measure of tactical role suitability.
+
+# Importance tiers used inside every role's `metrics` block:
+#   high    - clearly important for the role. Scored.
+#   low     - nice to have for a player in the role, but not crucial in every tactic. Scored.
+#   support - role "feature" metrics (set pieces, penalties, 1v1s, headers, discipline...).
+#             Displayed only. Never contributes to the score.
+# Every high/low metric below has a *_percentile column, so it can be scored directly.
+# Support metrics may lack one (they are displayed, not ranked).
+importance_tiers:
+  high:    {weight: 2.0, scored: true}
+  low:     {weight: 1.0, scored: true}
+  support: {weight: 0.0, scored: false}
+
+
+position_groups:
+  Goalkeeper:
+    positions: ["Goalkeeper"]
+    roles: ["Goalkeeper", "Sweeper Keeper", "Ball-Playing Goalkeeper"]
+
+  Centre Back:
+    positions: ["Center Back", "Left Center Back", "Right Center Back"]
+    roles: ["Central Defender", "No-Nonsense Centre-Back", "Ball-Playing Defender", "Wide Centre-Back", "Libero"]
+
+  Full Back:
+    positions: ["Left Back", "Right Back"]
+    roles: ["Full-Back", "Inverted Full-Back", "No-Nonsense Full-Back", "Inverted Wing-Back"]
+
+  Wing Back:
+    positions: ["Left Wing Back", "Right Wing Back"]
+    roles: ["Wing-Back", "Complete Wing-Back", "Inverted Wing-Back", "Playmaking Wing-Back"]
+
+  Defensive Midfield:
+    positions: ["Center Defensive Midfield", "Left Defensive Midfield", "Right Defensive Midfield"]
+    roles: ["Defensive Midfielder", "Anchor", "Half-Back", "Ball-Winning Midfielder", "Deep-Lying Playmaker", "Segundo Volante"]
+
+  Central Midfield:
+    positions: ["Right Center Midfield", "Left Center Midfield"]
+    roles: ["Central Midfielder", "Box-to-Box Midfielder", "Deep-Lying Playmaker", "Roaming Playmaker", "Mezzala", "Carrilero", "Ball-Winning Midfielder"]
+
+  Attacking Midfield:
+    positions: ["Center Attacking Midfield"]
+    roles: ["Attacking Midfielder", "Advanced Playmaker", "Enganche", "Trequartista", "Shadow Striker"]
+
+  Wide Midfield:
+    positions: ["Left Midfield", "Right Midfield"]
+    roles: ["Wide Midfielder", "Wide Playmaker", "Wide Midfielder (Defensive)", "Wide Midfielder (Attacking)"]
+
+  Winger:
+    positions: ["Left Wing", "Right Wing", "Right Attacking Midfield"]
+    roles: ["Winger", "Inverted Winger", "Inside Forward", "Wide Playmaker", "Raumdeuter"]
+
+  Centre Forward:
+    positions: ["Center Forward", "Left Center Forward", "Right Center Forward"]
+    roles: ["Advanced Forward", "Complete Forward", "Deep-Lying Forward", "False Nine", "Target Forward", "Poacher", "Pressing Forward", "Trequartista", "Second Striker", "Channel Forward"]
+
+# Each role lists its metrics split into high / low / support importance.
+# A metric may appear in several roles, but only once per role.
+roles:
+  # ---------------------------------------------------------------- Goalkeepers
+  Goalkeeper:
+    metrics:
+      high: [goals_prevented, save_pct]
+      low: [saves, action_type_collected, action_outcome_fail, pass_completion_pct]
+      support: [shots_on_target_faced, xg_against_on_target_shots, goals_conceded, gk_actions, action_type_punch, penalties_faced, penalties_saved, penalty_save_pct, penalty_goals_conceded]
+
+  Sweeper Keeper:
+    metrics:
+      high: [goals_prevented, action_type_keeper_sweeper, action_type_smother]
+      low: [save_pct, action_outcome_fail, gk_actions, action_type_collected, completed_passes, pass_completion_pct, forward_passes]
+      support: [shots_on_target_faced, saves, actions_per_shot_on_target, action_type_punch, penalties_faced, penalties_saved, penalty_save_pct]
+
+  Ball-Playing Goalkeeper:
+    metrics:
+      high: [goals_prevented, pass_completion_pct, forward_passes, line_breaking_passes]
+      low: [completed_passes, save_pct, action_type_collected, action_type_keeper_sweeper, action_outcome_fail]
+      support: [key_passes, xag, gk_actions, shots_on_target_faced, saves, penalties_faced, penalties_saved, penalty_save_pct]
+
+  # ---------------------------------------------------------------- Centre-backs
+  Central Defender:
+    metrics:
+      high: [interceptions, blocks, clearances, aerial_duel_win_pct, tackle_success_pct, dribbled_past_pct]
+      low: [aerial_won, tackles_won, ball_recoveries, pressures, completed_passes, pass_completion_pct, line_breaking_passes, fouls]
+      support: [aerial_clearances_won, yellow_cards, red_cards]
+
+  No-Nonsense Centre-Back:
+    metrics:
+      high: [clearances, blocks, aerial_duel_win_pct, aerial_clearances_won, tackle_success_pct, dribbled_past_pct]
+      low: [aerial_won, tackles_won, interceptions, ball_recoveries, pressures]
+      support: [fouls, yellow_cards, red_cards]
+
+  Ball-Playing Defender:
+    metrics:
+      high: [completed_passes, pass_completion_pct, forward_passes, line_breaking_passes]
+      low: [interceptions, clearances, aerial_duel_win_pct, dribbled_past_pct, successful_carries, long_carries_10m, key_passes, dispossessed]
+      support: [xag, total_carry_distance, aerial_clearances_won]
+
+  Wide Centre-Back:
+    metrics:
+      high: [dribbled_past_pct, tackle_success_pct, successful_carries, long_carries_10m, forward_passes]
+      low: [tackles_won, interceptions, blocks, clearances, aerial_duel_win_pct, ball_recoveries, pressures, completed_passes, line_breaking_passes, total_carry_distance]
+      support: [aerial_clearances_won, very_long_carries_20m]
+
+  Libero:
+    metrics:
+      high: [successful_carries, long_carries_10m, line_breaking_passes, forward_passes, interceptions]
+      low: [completed_passes, pass_completion_pct, total_carry_distance, completed_dribbles, key_passes, ball_recoveries, clearances, aerial_duel_win_pct, pressures, dispossessed]
+      support: [xag, dribble_success_pct, very_long_carries_20m]
+
+  # ---------------------------------------------------------------- Full-backs
+  Full-Back:
+    metrics:
+      high: [dribbled_past_pct, tackle_success_pct, interceptions, successful_carries, key_passes]
+      low: [tackles_won, blocks, clearances, ball_recoveries, pressures, long_carries_10m, completed_dribbles, completed_passes, pass_completion_pct, forward_passes, xag, dispossessed]
+      support: [corners, completed_corners]
+
+  Inverted Full-Back:
+    metrics:
+      high: [completed_passes, pass_completion_pct, forward_passes, line_breaking_passes, interceptions]
+      low: [tackles_won, tackle_success_pct, dribbled_past_pct, blocks, ball_recoveries, pressures, successful_carries, long_carries_10m, dispossessed]
+      support: [key_passes, xag, total_carry_distance]
+
+  No-Nonsense Full-Back:
+    metrics:
+      high: [tackles_won, tackle_success_pct, dribbled_past_pct, interceptions, clearances]
+      low: [blocks, aerial_duel_win_pct, aerial_clearances_won, ball_recoveries, pressures]
+      support: [fouls, yellow_cards, red_cards]
+
+  Inverted Wing-Back:
+    metrics:
+      high: [successful_carries, completed_passes, forward_passes, line_breaking_passes, key_passes]
+      low: [pass_completion_pct, long_carries_10m, total_carry_distance, completed_dribbles, xag, interceptions, tackles_won, ball_recoveries, pressures, dribbled_past_pct, dispossessed]
+      support: [dribble_success_pct, very_long_carries_20m]
+
+  # ---------------------------------------------------------------- Wing-backs
+  Wing-Back:
+    metrics:
+      high: [successful_carries, long_carries_10m, completed_dribbles, key_passes, dribbled_past_pct]
+      low: [total_carry_distance, very_long_carries_20m, dribble_success_pct, completed_passes, forward_passes, xag, tackles_won, tackle_success_pct, interceptions, ball_recoveries, pressures, dispossessed]
+      support: [corners, completed_corners]
+
+  Complete Wing-Back:
+    metrics:
+      high: [successful_carries, long_carries_10m, completed_dribbles, key_passes, xag]
+      low: [total_carry_distance, dribble_success_pct, completed_passes, forward_passes, line_breaking_passes, np_xg, tackles_won, tackle_success_pct, interceptions, pressures, dribbled_past_pct, dispossessed]
+      support: [np_shots, corners, completed_corners]
+
+  Playmaking Wing-Back:
+    metrics:
+      high: [completed_passes, pass_completion_pct, forward_passes, line_breaking_passes, key_passes, xag]
+      low: [successful_carries, completed_dribbles, dribble_success_pct, long_carries_10m, dispossessed, interceptions, tackles_won, dribbled_past_pct]
+      support: [corners, completed_corners]
+
+  # ---------------------------------------------------------------- Defensive midfielders
+  Defensive Midfielder:
+    metrics:
+      high: [interceptions, tackles_won, tackle_success_pct, ball_recoveries, pass_completion_pct]
+      low: [pressures, blocks, dribbled_past_pct, dispossessed, completed_passes, forward_passes, aerial_duel_win_pct, fouls]
+      support: [yellow_cards]
+
+  Anchor:
+    metrics:
+      high: [interceptions, blocks, ball_recoveries, tackle_success_pct, dribbled_past_pct]
+      low: [tackles_won, clearances, pressures, dispossessed, pass_completion_pct, aerial_duel_win_pct]
+      support: [fouls, yellow_cards, red_cards, completed_passes]
+
+  Half-Back:
+    metrics:
+      high: [interceptions, blocks, clearances, aerial_duel_win_pct, pass_completion_pct, ball_recoveries]
+      low: [tackles_won, tackle_success_pct, aerial_clearances_won, pressures, completed_passes, forward_passes, line_breaking_passes, dribbled_past_pct, dispossessed]
+      support: [fouls, yellow_cards]
+
+  Ball-Winning Midfielder:
+    metrics:
+      high: [tackles_won, tackle_success_pct, ball_recoveries, pressures, interceptions]
+      low: [dribbled_past_pct, dispossessed, successful_carries, completed_passes, pass_completion_pct, forward_passes, aerial_duel_win_pct]
+      support: [fouls, yellow_cards, red_cards]
+
+  Deep-Lying Playmaker:
+    metrics:
+      high: [completed_passes, pass_completion_pct, forward_passes, line_breaking_passes, xag]
+      low: [key_passes, successful_carries, total_carry_distance, interceptions, ball_recoveries, pressures, tackles_won, dispossessed]
+      support: [corners, completed_corners, long_carries_10m]
+
+  Segundo Volante:
+    metrics:
+      high: [successful_carries, long_carries_10m, ball_recoveries, tackles_won, np_xg]
+      low: [interceptions, pressures, tackle_success_pct, total_carry_distance, completed_passes, forward_passes, line_breaking_passes, np_shots, np_goals, dispossessed]
+      support: [np_shots_on_target]
+
+  # ---------------------------------------------------------------- Central midfielders
+  Central Midfielder:
+    metrics:
+      high: [completed_passes, pass_completion_pct, forward_passes, successful_carries, ball_recoveries]
+      low: [line_breaking_passes, total_carry_distance, pressures, interceptions, tackles_won, tackle_success_pct, dispossessed, key_passes, xag]
+      support: [np_xg, np_goals, corners, completed_corners]
+
+  Box-to-Box Midfielder:
+    metrics:
+      high: [successful_carries, long_carries_10m, ball_recoveries, pressures, np_xg]
+      low: [total_carry_distance, completed_dribbles, interceptions, tackles_won, tackle_success_pct, completed_passes, forward_passes, line_breaking_passes, np_shots, np_goals, xag, dispossessed]
+      support: [np_shots_on_target, very_long_carries_20m]
+
+  Roaming Playmaker:
+    metrics:
+      high: [completed_passes, forward_passes, line_breaking_passes, xag, key_passes, successful_carries]
+      low: [pass_completion_pct, total_carry_distance, long_carries_10m, completed_dribbles, pressures, ball_recoveries, np_xg, dispossessed]
+      support: [np_shots, dribble_success_pct, corners, completed_corners]
+
+  Mezzala:
+    metrics:
+      high: [successful_carries, long_carries_10m, key_passes, xag, line_breaking_passes, np_xg]
+      low: [forward_passes, completed_passes, completed_dribbles, total_carry_distance, np_goals, np_shots, pressures, interceptions, dispossessed]
+      support: [dribble_success_pct, np_shots_on_target]
+
+  Carrilero:
+    metrics:
+      high: [ball_recoveries, interceptions, tackle_success_pct, pressures, pass_completion_pct]
+      low: [tackles_won, dribbled_past_pct, successful_carries, total_carry_distance, completed_passes, forward_passes, dispossessed]
+      support: [long_carries_10m]
+
+  # ---------------------------------------------------------------- Attacking midfielders
+  Attacking Midfielder:
+    metrics:
+      high: [key_passes, xag, np_xg, np_goals, line_breaking_passes]
+      low: [completed_passes, forward_passes, pass_completion_pct, successful_carries, completed_dribbles, np_shots, np_shots_on_target, pressures, dispossessed]
+      support: [dribble_success_pct, corners, completed_corners, penalties, penalty_goals, penalty_conversion_pct]
+
+  Advanced Playmaker:
+    metrics:
+      high: [xag, key_passes, line_breaking_passes, forward_passes]
+      low: [completed_passes, pass_completion_pct, successful_carries, completed_dribbles, np_xg, np_shots, dispossessed]
+      support: [np_goals, dribble_success_pct, corners, completed_corners]
+
+  Enganche:
+    metrics:
+      high: [xag, key_passes, line_breaking_passes, forward_passes]
+      low: [completed_passes, pass_completion_pct, np_xg, np_goals, np_shots, dispossessed]
+      support: [corners, completed_corners, penalties, penalty_goals, penalty_conversion_pct]
+
+  Trequartista:
+    metrics:
+      high: [xag, key_passes, np_xg, np_goals, completed_dribbles]
+      low: [np_shots, np_shots_on_target, np_xg_per_shot, successful_carries, dribble_success_pct, line_breaking_passes, dispossessed]
+      support: [one_on_one_shots, one_on_one_xg, one_on_one_goals, nutmegs, penalties, penalty_goals, penalty_conversion_pct]
+
+  Shadow Striker:
+    metrics:
+      high: [np_xg, np_goals, np_shots, np_shots_on_target]
+      low: [np_xg_per_shot, np_goals_minus_xg, headed_xg, pressures, tackles_won, completed_dribbles, successful_carries, key_passes, xag, dispossessed]
+      support: [headed_shots, headed_goals, one_on_one_shots, one_on_one_xg, one_on_one_goals, penalties, penalty_goals, penalty_conversion_pct]
+
+  # ---------------------------------------------------------------- Wide midfielders
+  Wide Midfielder:
+    metrics:
+      high: [successful_carries, completed_dribbles, key_passes, pressures, ball_recoveries]
+      low: [total_carry_distance, dribble_success_pct, completed_passes, forward_passes, xag, tackles_won, dispossessed]
+      support: [corners, completed_corners, long_carries_10m]
+
+  Wide Midfielder (Defensive):
+    metrics:
+      high: [pressures, tackles_won, tackle_success_pct, interceptions, ball_recoveries, dribbled_past_pct]
+      low: [blocks, successful_carries, completed_passes, pass_completion_pct, dispossessed]
+      support: []
+
+  Wide Midfielder (Attacking):
+    metrics:
+      high: [completed_dribbles, successful_carries, key_passes, xag, np_xg]
+      low: [dribble_success_pct, total_carry_distance, long_carries_10m, np_goals, np_shots, dispossessed]
+      support: [corners, completed_corners]
+
+  # ---------------------------------------------------------------- Wingers
+  Winger:
+    metrics:
+      high: [completed_dribbles, successful_carries, long_carries_10m, key_passes, xag]
+      low: [dribble_success_pct, total_carry_distance, np_xg, np_shots, completed_passes, forward_passes, dispossessed]
+      support: [nutmegs, successful_nutmegs, successful_nutmeg_pct, corners, completed_corners]
+
+  Inverted Winger:
+    metrics:
+      high: [completed_dribbles, successful_carries, np_xg, np_goals, xag, key_passes]
+      low: [dribble_success_pct, np_shots, np_shots_on_target, np_xg_per_shot, line_breaking_passes, long_carries_10m, dispossessed]
+      support: [one_on_one_shots, one_on_one_xg, one_on_one_goals, nutmegs, successful_nutmegs, corners, completed_corners, penalties, penalty_goals, penalty_conversion_pct]
+
+  Inside Forward:
+    metrics:
+      high: [np_xg, np_goals, np_shots, np_shots_on_target, completed_dribbles]
+      low: [np_xg_per_shot, np_goals_minus_xg, successful_carries, dribble_success_pct, key_passes, xag, dispossessed]
+      support: [np_conversion_pct, one_on_one_shots, one_on_one_xg, one_on_one_shots_on_target, one_on_one_goals, penalties, penalty_goals, penalty_conversion_pct]
+
+  Wide Playmaker:
+    metrics:
+      high: [xag, key_passes, completed_passes, forward_passes, line_breaking_passes]
+      low: [pass_completion_pct, successful_carries, completed_dribbles, dribble_success_pct, dispossessed]
+      support: [corners, completed_corners, corner_completion_pct]
+
+  Raumdeuter:
+    metrics:
+      high: [np_xg, np_goals, np_shots, np_shots_on_target, np_xg_per_shot]
+      low: [np_goals_minus_xg, np_conversion_pct, headed_xg, one_on_one_xg, successful_carries, xag]
+      support: [headed_shots, headed_goals, one_on_one_shots, one_on_one_goals, penalties, penalty_goals, penalty_conversion_pct]
+
+  # ---------------------------------------------------------------- Forwards
+  Channel Forward:
+    metrics:
+      high: [np_xg, np_goals, long_carries_10m, successful_carries, completed_dribbles]
+      low: [np_shots, np_shots_on_target, np_xg_per_shot, one_on_one_xg, pressures, dribble_success_pct, dispossessed]
+      support: [one_on_one_shots, one_on_one_shots_on_target, one_on_one_goals, penalties, penalty_goals, penalty_conversion_pct]
+
+  Advanced Forward:
+    metrics:
+      high: [np_xg, np_goals, np_shots, np_shots_on_target, np_xg_per_shot]
+      low: [np_goals_minus_xg, np_conversion_pct, one_on_one_xg, headed_xg, pressures, successful_carries, dispossessed]
+      support: [headed_shots, headed_shots_on_target, headed_goals, one_on_one_shots, one_on_one_shots_on_target, one_on_one_goals, penalties, penalty_goals, penalty_conversion_pct]
+
+  Complete Forward:
+    metrics:
+      high: [np_xg, np_goals, xag, key_passes, completed_dribbles]
+      low: [np_shots, np_shots_on_target, headed_xg, successful_carries, aerial_won, aerial_duel_win_pct, pressures, one_on_one_xg, dispossessed]
+      support: [headed_shots, headed_goals, one_on_one_shots, one_on_one_goals, penalties, penalty_goals, penalty_conversion_pct]
+
+  Deep-Lying Forward:
+    metrics:
+      high: [key_passes, xag, line_breaking_passes, completed_passes, np_xg]
+      low: [forward_passes, pass_completion_pct, successful_carries, completed_dribbles, np_goals, np_shots, aerial_duel_win_pct, dispossessed]
+      support: [penalties, penalty_goals, penalty_conversion_pct]
+
+  False Nine:
+    metrics:
+      high: [xag, key_passes, line_breaking_passes, completed_passes, successful_carries]
+      low: [forward_passes, pass_completion_pct, completed_dribbles, dribble_success_pct, np_xg, np_goals, np_shots, dispossessed]
+      support: [penalties, penalty_goals, penalty_conversion_pct]
+
+  Target Forward:
+    metrics:
+      high: [aerial_won, aerial_duel_win_pct, headed_xg, np_xg, np_goals]
+      low: [headed_shots, headed_shots_on_target, headed_goals, np_shots, np_shots_on_target, pressures, key_passes, dispossessed]
+      support: [penalties, penalty_goals, penalty_conversion_pct]
+
+  Poacher:
+    metrics:
+      high: [np_xg, np_goals, np_shots, np_shots_on_target, np_xg_per_shot]
+      low: [np_goals_minus_xg, np_conversion_pct, one_on_one_xg, headed_xg, dispossessed]
+      support: [one_on_one_shots, one_on_one_shots_on_target, one_on_one_goals, headed_shots, headed_goals, penalties, penalty_goals, penalty_conversion_pct]
+
+  Pressing Forward:
+    metrics:
+      high: [pressures, tackles_won, ball_recoveries, np_xg, np_goals]
+      low: [interceptions, tackle_success_pct, np_shots, successful_carries, dribbled_past_pct, dispossessed]
+      support: [fouls, yellow_cards]
+
+  Second Striker:
+    metrics:
+      high: [np_xg, np_goals, key_passes, xag, completed_dribbles]
+      low: [np_shots, np_shots_on_target, successful_carries, completed_passes, pressures, one_on_one_xg, dispossessed]
+      support: [one_on_one_shots, penalties, penalty_goals, penalty_conversion_pct]
+
+# Optional: the full set of source positions, useful for validating the mapping.
+source_positions:
+  - Right Center Back
+  - Goalkeeper
+  - Center Defensive Midfield
+  - Right Back
+  - Right Center Midfield
+  - Center Forward
+  - Left Back
+  - Left Center Forward
+  - Left Defensive Midfield
+  - Left Center Back
+  - Right Defensive Midfield
+  - Left Center Midfield
+  - Right Wing
+  - Center Attacking Midfield
+  - Left Midfield
+  - Left Wing
+  - Center Back
+  - Left Wing Back
+  - Right Center Forward
+  - Right Midfield
+  - Right Wing Back
+  - Right Attacking Midfield

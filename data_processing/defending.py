@@ -1,5 +1,5 @@
-
 import json
+import csv
 from pathlib import Path
 from collections import defaultdict
 
@@ -47,6 +47,78 @@ def is_lost(outcome):
     }
 
 
+def calculate_percentage(numerator, denominator):
+    """Return a percentage, or None when the denominator is zero."""
+    if denominator == 0:
+        return None
+    return round((numerator / denominator) * 100, 2)
+
+
+def process_aerial_duel(event, event_by_id, player_stats):
+    duel = event.get("duel") or {}
+    duel_type = normalize(get_name(duel.get("type")))
+
+    if duel_type != "aerial lost":
+        return
+
+    loser_id, loser_name = get_player(event)
+
+    if loser_id is None:
+        return
+
+    # The player attached to "Aerial Lost" is the loser.
+    if loser_id not in player_stats:
+        player_stats[loser_id] = new_player_stats(
+            loser_id, loser_name
+        )
+
+    player_stats[loser_id]["aerial_lost"] += 1
+
+    # Look up the linked event to identify the player who gained
+    # possession after the aerial duel.
+    for related_id in event.get("related_events", []):
+        related_event = event_by_id.get(related_id)
+
+        if not related_event:
+            continue
+
+        winner_id, winner_name = get_player(related_event)
+
+        if winner_id is None or winner_id == loser_id:
+            continue
+
+        loser_team = (event.get("team") or {}).get("id")
+        winner_team = (related_event.get("team") or {}).get("id")
+
+        if loser_team is None or winner_team is None:
+            continue
+
+        if loser_team == winner_team:
+            continue
+
+        # Only attribute a win when the linked event is a
+        # possession/action event by the opposing player.
+        winner_event_type = get_name(related_event.get("type"))
+
+        if winner_event_type not in {
+            "Pass",
+            "Carry",
+            "Clearance",
+            "Shot",
+            "Ball Recovery",
+            "Interception",
+        }:
+            continue
+
+        if winner_id not in player_stats:
+            player_stats[winner_id] = new_player_stats(
+                winner_id, winner_name
+            )
+
+        player_stats[winner_id]["aerial_won"] += 1
+        break
+
+
 def new_player_stats(player_id, player_name):
     return {
         "player_id": player_id,
@@ -59,7 +131,11 @@ def new_player_stats(player_id, player_name):
         "clearances": 0,
         "aerial_clearances_won": 0,
 
+        # Aerial duel counts. `aerial_lost` now means actual lost duels,
+        # rather than every event whose duel type is "Aerial Lost".
+        "aerial_won": 0,
         "aerial_lost": 0,
+
         "tackles_won": 0,
         "tackles_lost": 0,
 
@@ -111,7 +187,7 @@ def process_event(event, player_stats):
 
         clearance = event.get("clearance") or {}
 
-        # StatsBomb records whether the clearance was an aerial win.
+        # This is an aerial clearance, not a general aerial duel win.
         if clearance.get("aerial_won") is True:
             stats["aerial_clearances_won"] += 1
 
@@ -125,7 +201,7 @@ def process_event(event, player_stats):
         stats["dispossessed"] += 1
 
     # --------------------------------------------------
-    # Duels: tackles and aerial losses
+    # Duels: tackles and aerial duels
     # --------------------------------------------------
 
     elif event_type == "Duel":
@@ -139,8 +215,6 @@ def process_event(event, player_stats):
             elif is_lost(outcome):
                 stats["tackles_lost"] += 1
 
-        elif duel_type == "aerial lost":
-            stats["aerial_lost"] += 1
 
     # --------------------------------------------------
     # Fouls and cards
@@ -176,6 +250,39 @@ def process_event(event, player_stats):
                 stats["yellow_cards"] += 1
 
 
+def add_derived_metrics(row):
+    # Tackle success: won tackles / all tackles with a known outcome.
+    tackle_attempts = row["tackles_won"] + row["tackles_lost"]
+    row["tackle_success_pct"] = calculate_percentage(
+        row["tackles_won"],
+        tackle_attempts
+    )
+
+    # Aerial duel success: won aerial duels / all aerial duels with
+    # a known outcome. Aerial clearances are deliberately excluded.
+    aerial_duels = row["aerial_won"] + row["aerial_lost"]
+    row["aerial_duel_win_pct"] = calculate_percentage(
+        row["aerial_won"],
+        aerial_duels
+    )
+
+    # Approximation of how often the defender is beaten in recorded
+    # defensive 1v1 events. The denominator combines tackle duels
+    # (won + lost) with separate "Dribbled Past" events.
+    # It is not a complete measure of all defensive 1v1 situations.
+    defensive_1v1_events = (
+        row["tackles_won"]
+        + row["tackles_lost"]
+        + row["dribbled_past"]
+    )
+    row["dribbled_past_pct"] = calculate_percentage(
+        row["dribbled_past"],
+        defensive_1v1_events
+    )
+
+    return row
+
+
 def main():
     player_stats = defaultdict(dict)
 
@@ -191,14 +298,27 @@ def main():
             if not isinstance(events, list):
                 continue
 
+            event_by_id = {
+                event["id"]: event
+                for event in events
+                if event.get("id")
+            }
+
             for event in events:
                 process_event(event, player_stats)
+
+            for event in events:
+                process_aerial_duel(
+                    event,
+                    event_by_id,
+                    player_stats
+                )
 
         except (json.JSONDecodeError, OSError) as error:
             print(f"Could not process {file_path}: {error}")
 
     # --------------------------------------------------
-    # Convert to rows and save
+    # Convert to rows, calculate derived metrics and save
     # --------------------------------------------------
 
     columns = [
@@ -209,19 +329,28 @@ def main():
         "blocks",
         "clearances",
         "aerial_clearances_won",
+        "aerial_won",
         "aerial_lost",
+        "aerial_duel_win_pct",
         "tackles_won",
         "tackles_lost",
+        "tackle_success_pct",
         "ball_recoveries",
         "dribbled_past",
+        "dribbled_past_pct",
         "dispossessed",
         "fouls",
         "yellow_cards",
         "red_cards",
     ]
 
+    rows = [
+        add_derived_metrics(dict(row))
+        for row in player_stats.values()
+    ]
+
     rows = sorted(
-        player_stats.values(),
+        rows,
         key=lambda row: (
             row["tackles_won"],
             row["interceptions"],
@@ -231,8 +360,6 @@ def main():
     )
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-
-    import csv
 
     with open(
         OUTPUT_FILE,

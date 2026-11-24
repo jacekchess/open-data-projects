@@ -265,11 +265,20 @@ def aggregate_player_statistics(df):
     ]
 
     result = (
-        df.groupby(
-            ["player_id", "player_name"],
-            as_index=False
-        )[numeric_columns]
-        .sum()
+        df.groupby("player_id", as_index=False)
+        .agg(
+            player_name=(
+                "player_name",
+                lambda s: next(
+                    (name for name in s if pd.notna(name)),
+                    None
+                )
+            ),
+            **{
+                column: (column, "sum")
+                for column in numeric_columns
+            }
+        )
     )
 
     # -----------------------------------------------------
@@ -295,6 +304,10 @@ def aggregate_player_statistics(df):
         .div(result["np_shots"].replace(0, float("nan")))
         .round(3)
     )
+
+    result["np_goals_minus_xg"] = (
+        result["np_goals"] - result["np_xg"]
+    ).round(3)
 
     # -----------------------------------------------------
     # HEADED SHOT RATES

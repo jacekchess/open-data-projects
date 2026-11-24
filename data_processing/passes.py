@@ -12,7 +12,6 @@ import pandas as pd
 # ---------------------------------------------------------
 
 EVENTS_DIR = Path("open-data-projects/data/events")
-THREE_SIXTY_DIR = EVENTS_DIR.parent / "three-sixty"
 
 OUTPUT_FILE = "open-data-projects/data/processed/passes.csv"
 
@@ -33,13 +32,6 @@ EXCLUDED_PASS_TYPES = {
 # ---------------------------------------------------------
 
 GOAL_CENTER = (120.0, 40.0)
-
-# Maximum difference between defenders' x coordinates
-# for them to be considered a close defensive pair.
-# This is an adjustable approximation, not a published
-# StatsBomb threshold.
-DEFENDER_PAIR_X_GAP = 10.0
-
 
 # ---------------------------------------------------------
 # HELPER FUNCTIONS
@@ -79,67 +71,27 @@ def distance_to_goal(location):
     """Euclidean distance from a location to the opponent's goal."""
     return math.dist(location[:2], GOAL_CENTER)
 
-
-def orientation(a, b, c):
-    """Cross product used for segment intersection."""
-    return (
-        (b[0] - a[0]) * (c[1] - a[1])
-        - (b[1] - a[1]) * (c[0] - a[0])
-    )
-
-
-def segments_intersect(a, b, c, d):
-    """Return True if line segments AB and CD intersect."""
-
-    eps = 1e-9
-
-    o1 = orientation(a, b, c)
-    o2 = orientation(a, b, d)
-    o3 = orientation(c, d, a)
-    o4 = orientation(c, d, b)
-
-    if (
-        ((o1 > eps and o2 < -eps) or
-         (o1 < -eps and o2 > eps))
-        and
-        ((o3 > eps and o4 < -eps) or
-         (o3 < -eps and o4 > eps))
-    ):
-        return True
-
-    def on_segment(p, q, r):
-        return (
-            min(p[0], r[0]) - eps <= q[0] <= max(p[0], r[0]) + eps
-            and
-            min(p[1], r[1]) - eps <= q[1] <= max(p[1], r[1]) + eps
-        )
-
-    if abs(o1) <= eps and on_segment(a, c, b):
-        return True
-    if abs(o2) <= eps and on_segment(a, d, b):
-        return True
-    if abs(o3) <= eps and on_segment(c, a, d):
-        return True
-    if abs(o4) <= eps and on_segment(c, b, d):
-        return True
-
-    return False
-
-
 # ---------------------------------------------------------
 # LINE-BREAKING PASS DETECTION
 # ---------------------------------------------------------
 
-def is_line_breaking_pass(event, freeze_frame):
+MIN_GOAL_DISTANCE_REDUCTION = 0.10
+
+
+def is_line_breaking_pass(event):
     """
-    Approximation of StatsBomb's published line-breaking rules.
+    Line-breaking pass proxy without 360 data.
 
     Requirements:
-    1. Completed open-play pass.
-    2. Not a high-lofted pass.
-    3. At least 10% closer to the opponent's goal.
-    4. Intersects a close defensive pair OR finishes
-       goal-side of a defensive pair.
+    1. Completed pass.
+    2. Open-play pass.
+    3. Not high-lofted.
+    4. Pass endpoint is at least 10% closer to
+       the opponent's goal than the starting point.
+
+    NOTE:
+    Without defender positions, this cannot confirm
+    whether the pass actually breaks a defensive line.
     """
 
     pass_data = event.get("pass", {})
@@ -152,13 +104,13 @@ def is_line_breaking_pass(event, freeze_frame):
     if pass_data.get("type") is not None:
         return False
 
-    # 3. Exclude high-lofted passes
+    # 3. Exclude high passes
     pass_height = get_name(pass_data.get("height"))
 
     if pass_height == "High":
         return False
 
-    # 4. Check minimum progression
+    # 4. Check progression towards goal
     start = event.get("location")
     end = pass_data.get("end_location")
 
@@ -174,108 +126,11 @@ def is_line_breaking_pass(event, freeze_frame):
     if start_distance == 0:
         return False
 
-    progression = (start_distance - end_distance) / start_distance
+    progression = (
+        start_distance - end_distance
+    ) / start_distance
 
-    if progression < 0.10:
-        return False
-
-    # 5. Extract visible opponents from the freeze frame
-    if not freeze_frame:
-        return False
-
-    defenders = []
-
-    for player in freeze_frame:
-
-        if player.get("teammate", True):
-            continue
-
-        if player.get("actor", False):
-            continue
-
-        location = player.get("location")
-
-        if not location or len(location) < 2:
-            continue
-
-        defenders.append((
-            float(location[0]),
-            float(location[1])
-        ))
-
-    if len(defenders) < 2:
-        return False
-
-    # 6. Evaluate all possible defensive pairs
-    for i in range(len(defenders)):
-
-        for j in range(i + 1, len(defenders)):
-
-            defender_1 = defenders[i]
-            defender_2 = defenders[j]
-
-            x_gap = abs(defender_1[0] - defender_2[0])
-
-            if x_gap > DEFENDER_PAIR_X_GAP:
-                continue
-
-            # Condition A: pass intersects the defensive pair
-            if segments_intersect(
-                start,
-                end,
-                defender_1,
-                defender_2
-            ):
-                return True
-
-            # Condition B: pass finishes goal-side of the pair
-            goal_side = (
-                end[0] > max(defender_1[0], defender_2[0])
-            )
-
-            between_defenders = (
-                min(defender_1[1], defender_2[1])
-                <= end[1]
-                <= max(defender_1[1], defender_2[1])
-            )
-
-            if goal_side and between_defenders:
-                return True
-
-    return False
-
-# ---------------------------------------------------------
-# THREE-SIXTY FILE LOOKUP
-# ---------------------------------------------------------
-
-def build_three_sixty_lookup(match_file):
-    """
-    Load three-sixty data and map:
-        event_uuid -> freeze_frame
-
-    The three-sixty file is expected to have the same
-    filename as the corresponding events file.
-    """
-
-    three_sixty_file = THREE_SIXTY_DIR / match_file.name
-
-    if not three_sixty_file.exists():
-        return {}
-
-    try:
-        with open(three_sixty_file, "r", encoding="utf-8") as f:
-            records = json.load(f)
-
-    except (json.JSONDecodeError, OSError) as e:
-        print(f"Could not read {three_sixty_file}: {e}")
-        return {}
-
-    return {
-        record.get("event_uuid"): record.get("freeze_frame", [])
-        for record in records
-        if record.get("event_uuid")
-    }
-
+    return progression >= MIN_GOAL_DISTANCE_REDUCTION
 
 # ---------------------------------------------------------
 # PROCESS ONE MATCH
@@ -284,8 +139,6 @@ def build_three_sixty_lookup(match_file):
 def process_match(match_file):
     with open(match_file, "r", encoding="utf-8") as f:
         events = json.load(f)
-
-    three_sixty = build_three_sixty_lookup(match_file)
 
     # Accumulate statistics by player within this match.
     stats = defaultdict(lambda: {
@@ -400,9 +253,7 @@ def process_match(match_file):
         # LINE-BREAKING PASSES
         # ---------------------------------------------
 
-        freeze_frame = three_sixty.get(pass_id, [])
-
-        if is_line_breaking_pass(event, freeze_frame):
+        if is_line_breaking_pass(event):
             player_stats["line_breaking_passes"] += 1
 
 
@@ -485,11 +336,15 @@ def aggregate_player_statistics(df):
         return df
 
     result = (
-        df.groupby(
-            ["player_id", "player_name"],
-            as_index=False
-        )
+        df.groupby("player_id", as_index=False)
         .agg(
+            player_name=(
+                "player_name",
+                lambda s: next(
+                    (name for name in s if pd.notna(name)),
+                    None
+                )
+            ),
             regular_passes=("regular_passes", "sum"),
             completed_passes=("completed_passes", "sum"),
             corners=("corners", "sum"),
